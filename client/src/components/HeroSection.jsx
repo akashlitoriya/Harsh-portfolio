@@ -6,7 +6,7 @@ import { LuMouse } from "react-icons/lu";
 
 const HeroSection = () => {
   return (
-    <div className='w-full h-full relative'>
+    <div className='w-screen h-screen relative snap-start'>
         <video 
             src={isMobile() ? hero_section_mob : hero_section_desk} 
             autoPlay 

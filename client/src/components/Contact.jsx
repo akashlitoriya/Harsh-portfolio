@@ -6,7 +6,7 @@ import ContactForm from './Contact_US/ContactForm';
 
 const Contact = () => {
   return (
-    <div className='w-full h-full relative'>
+    <div className='w-screen h-screen relative snap-start'>
         <video
             src = {contact_desktop}
             autoPlay
