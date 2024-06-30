@@ -6,6 +6,7 @@ const connectDB = require('./configs/database');
 const fileupload = require('express-fileupload');
 //importing routes
 const reviewRoutes = require('./routes/Review');
+const projectRoutes = require('./routes/Project');
 
 const app = express();
 
@@ -20,7 +21,7 @@ const port = process.env.PORT || 4000;
 app.use(
     fileupload({
         useTempFiles: true,
-        tempFileDir: 'temp/',
+        tempFileDir: 'temp',
     })
 )
 
@@ -31,6 +32,7 @@ connectDB();
 
 //routes
 app.use('/api/v1/review', reviewRoutes);
+app.use('/api/v1/project', projectRoutes);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
