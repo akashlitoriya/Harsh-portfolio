@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import CTAButton from '../components/CTAButton';
-import { IoLogoInstagram,IoLogoLinkedin } from "react-icons/io5";
+import { IoLogoInstagram,IoLogoLinkedin, IoLogoYoutube } from "react-icons/io5";
+import { FaArtstation } from "react-icons/fa";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -24,11 +25,11 @@ const Contact = () => {
             <CTAButton text={"Connect"} primaryColor={"blue_primary"} textColor={"white"}/>
           </div>
           {/* Socials  */}
-          <div className='flex flex-row gap-3 text-3xl'>
-            <a href='' ><IoLogoInstagram/></a>
-            <a href='' ><IoLogoLinkedin/></a>
-            <a href='' ></a>
-            <a href='' ></a>
+          <div className='flex flex-row gap-8 text-3xl'>
+            <a className='transition-all duration-200 hover:scale-125' href='https://www.linkedin.com/in/harshmandloi/' target='_blank'><IoLogoLinkedin/></a>
+            <a className='transition-all duration-200 hover:scale-125' href='https://www.instagram.com/hxartzwall/' target='_blank'><IoLogoInstagram/></a>
+            <a className='transition-all duration-200 hover:scale-125' href='https://www.artstation.com/hxartz' target='_blank' ><FaArtstation /></a>
+            <a className='transition-all duration-200 hover:scale-125' href='https://www.youtube.com/@hxartz3' target='_blank'><IoLogoYoutube /></a>
           </div>
           
         </div>
