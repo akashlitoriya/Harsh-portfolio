@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 
 const ProjectSchema = new mongoose.Schema({
+  projectId:{
+    type: String,
+    required:true
+  },
+  
   title: {
     type: String,
     required: true,
@@ -25,7 +30,7 @@ const ProjectSchema = new mongoose.Schema({
 
   category: {
     type: String,
-    enum: ["illustration", "3dRender"],
+    enum: ["Product Visualization", "Product Animation", "Personal Project"],
     required: true,
   },
 });

@@ -3,9 +3,11 @@ const express = require('express');
 const router = express.Router();
 
 //importing controllers
-const {createProject, getImportantIllustrations, getImportant3dRenders} = require('../controllers/Project');
+const {createProject, getImportantPersonalProject, getImportantProductAnimation,getImportantProductVisualization} = require('../controllers/Project');
 
 router.post('/createProject', createProject);
-router.get('/getIllustrations', getImportantIllustrations);
+router.get('/getPersonalProjects', getImportantPersonalProject);
+router.get('/getProductAnimations', getImportantProductAnimation);
+router.get('/getProductVisualizations', getImportantProductVisualization);
 
-module.exports = router;
+module.exports = router; 
