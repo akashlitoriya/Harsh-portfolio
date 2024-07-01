@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import {createBrowserRouter } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Work from './pages/Work';
@@ -59,7 +59,7 @@ function App() {
       container.removeEventListener('scroll', handleScrollEvent);
     };
   }, []);
-//console.log(currentSection)
+console.log(currentSection)
   return (
     <div className='flex flex-row w-screen h-screen bg-backdrop text-text_secondary font-Montserrat overflow-hidden'>
       {/* Navigation Menu */}
