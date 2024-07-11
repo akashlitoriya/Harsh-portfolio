@@ -1,5 +1,5 @@
 const Project = require('../models/Project');
-const { uploadOnCloud } = require('../utils/FileUploader');
+const { uploadOnCloud, deleteFileOnCloud } = require('../utils/FileUploader');
 const dotenv = require('dotenv');
 const uuid = require("uuid4");
 
@@ -7,29 +7,38 @@ dotenv.config();
 
 exports.createProject = async(req, res) => {
     try{
-        const{title, description, category, important} = req.body;
+        const{title, description, category, isImportant} = req.body;
         const file = req.files.file;
 
+        if(!title || !description || !category || !isImportant){
+            return res.status(400).json({message: "All fields are required."})
+        }
+
+        if(!file || (!file.mimetype.split('/')[0].match('image') && !file.mimetype.split('/')[0].match('video'))){
+            return res.status(400).json({message:"Invalid file type."});
+        }
         
         let cloudFile = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER);
-        console.log("cloudFile: ", cloudFile);
+        //console.log("cloudFile: ", cloudFile);
 
         const newProject = await Project.create({
             title,
             description,
             category,
-            important,
+            important: isImportant,
             url: cloudFile.secure_url,
-            projectId: uuid()
+            projectId: uuid(),
+            fileType: file.mimetype.split('/')[0],
+            publicId: cloudFile.public_id
         })
 
         res.status(201).json({
             success: true,
-            message: "Project created successfully",
-            data: newProject
+            message: "Project created successfully"
         })
     }
     catch(err){
+        
         res.status(500).json({
             success: false,
             message: "Failed to create project",
@@ -42,7 +51,7 @@ exports.getImportantProductAnimation = async(req, res) => {
     try{
         const projects = await Project.find({important: true,
             category: "Product Animation"
-        }).sort({createdAt: -1});
+        }, {publicId:0, _id:0, __v:0}).sort({createdAt: -1});
 
         res.status(200).json({
             success: true,
@@ -66,7 +75,7 @@ exports.getImportantPersonalProject = async(req, res) => {
             {
                 important: true,
                 category: "Personal Project",
-            }
+            },{publicId:0, _id:0, __v:0}
         ).sort({createdAt: -1});
 
         res.status(201).json({
@@ -91,7 +100,7 @@ exports.getImportantProductVisualization = async(req, res) => {
             {
                 important: true,
                 category: "Product Visualization",
-            }
+            },{publicId:0, _id:0, __v:0}
         ).sort({createdAt: -1});
 
         res.status(201).json({
