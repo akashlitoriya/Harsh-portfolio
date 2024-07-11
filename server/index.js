@@ -1,5 +1,6 @@
 const express = require('express')
 const dotenv = require('dotenv');
+const cors = require('cors');
 //importing configs
 const {cloudinaryConnect} = require('./configs/cloudinary');
 const connectDB = require('./configs/database');
@@ -16,6 +17,10 @@ app.use(express.json());
 dotenv.config();
 
 const port = process.env.PORT || 4000;
+
+app.use(cors({
+    origin: "*"
+}))
 
 //adding server files
 app.use(
