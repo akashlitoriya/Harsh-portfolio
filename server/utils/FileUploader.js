@@ -11,3 +11,12 @@ exports.uploadOnCloud = async(file, folder) => {
         console.error(err)
     }
 }
+exports.deleteFileOnCloud = async(id) =>{
+    try{
+        const result = await cloudinary.uploader.destroy(id);
+
+    }catch(err){
+        console.error(err);
+    }
+}
+

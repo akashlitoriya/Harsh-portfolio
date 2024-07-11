@@ -33,6 +33,14 @@ const ProjectSchema = new mongoose.Schema({
     enum: ["Product Visualization", "Product Animation", "Personal Project"],
     required: true,
   },
+  fileType: {
+    type: String,
+    enum: ["image", "video"]
+  },
+  publicId: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("Project", ProjectSchema);
