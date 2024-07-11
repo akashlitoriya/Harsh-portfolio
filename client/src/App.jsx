@@ -1,4 +1,4 @@
-import {createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Home from './pages/Home';
 import Work from './pages/Work';
@@ -7,13 +7,28 @@ import AboutMe from './pages/AboutMe';
 import Contact from './pages/Contact';
 import { useRef, useState, useEffect } from 'react';
 import NavigationBar from './components/NavigationBar';
+import ProductAnimation from './pages/ProductAnimation';
+import PersonalProject from './pages/PersonalProject';
+import ProductVisualization from './pages/ProductVisualization';
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <Home />,
+      path:'/',
+      element: <App />
     },
+    {
+      path: '/productVisualization',
+      element: <ProductVisualization />
+    },
+    {
+      path: '/productAnimation',
+      element: <ProductAnimation />
+    },
+    {
+      path: '/personalProject',
+      element: <PersonalProject />
+    }
   ]);
 
   const [currentSection, setCurrentSection] = useState(0);
@@ -59,37 +74,40 @@ function App() {
       container.removeEventListener('scroll', handleScrollEvent);
     };
   }, []);
-console.log(currentSection)
+  console.log(currentSection)
   return (
-    <div className='flex flex-row w-screen h-screen bg-backdrop text-text_secondary font-Montserrat overflow-hidden'>
-      {/* Navigation Menu */}
-      <div className='w-1/6 h-screen flex justify-center items-center'>
-        <NavigationBar section={currentSection}/>
-      </div>
+    // <RouterProvider router={router}>
+      <div className='flex flex-row w-screen h-screen bg-backdrop text-text_secondary font-Montserrat overflow-hidden'>
+        {/* Navigation Menu */}
+        <div className='w-1/6 h-screen flex justify-center items-center'>
+          <NavigationBar section={currentSection} />
+        </div>
 
-      {/* Pages */}
-      <div
-        ref={containerRef}
-        onWheel={handleScroll}
-        className='h-full w-full overflow-y-scroll snap-y snap-mandatory'
-      >
-        <div ref={(el) => (sectionsRef.current[0] = el)}>
-          <Home />
-        </div>
-        <div ref={(el) => (sectionsRef.current[1] = el)}>
-          <Work />
-        </div>
-        <div ref={(el) => (sectionsRef.current[2] = el)}>
-          <AboutMe />
-        </div>
-        <div ref={(el) => (sectionsRef.current[3] = el)}>
-          <Testimonial />
-        </div>
-        <div ref={(el) => (sectionsRef.current[4] = el)}>
-          <Contact />
+        {/* Pages */}
+        <div
+          ref={containerRef}
+          onWheel={handleScroll}
+          className='h-full w-full overflow-y-scroll snap-y snap-mandatory'
+        >
+          <div ref={(el) => (sectionsRef.current[0] = el)}>
+            <Home />
+          </div>
+          <div ref={(el) => (sectionsRef.current[1] = el)}>
+            <Work />
+          </div>
+          <div ref={(el) => (sectionsRef.current[2] = el)}>
+            <AboutMe />
+          </div>
+          <div ref={(el) => (sectionsRef.current[3] = el)}>
+            <Testimonial />
+          </div>
+          <div ref={(el) => (sectionsRef.current[4] = el)}>
+            <Contact />
+          </div>
         </div>
       </div>
-    </div>
+    // </RouterProvider>
+
   );
 }
 

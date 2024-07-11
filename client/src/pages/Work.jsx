@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { FaArrowRightLong } from "react-icons/fa6";
 import workCategories from '../utils/workCategories';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 const Work = () => {
+  const navigate = useNavigate();
+
   const [categoryList, setCategoryList] = useState(workCategories);
 
   function leftSlide(){
@@ -32,21 +35,21 @@ const Work = () => {
 
         {/* Gallery  */}
         <div className='flex items-center'>
-          <motion.button initial={{opacity:0}} whileInView={{opacity:100}} transition={{delay:0.3, duration:0.3}} onClick={()=>leftSlide()} className='p-3 text-white rotate-180 rounded-full bg-text_secondary text-2xl'><FaArrowRightLong/></motion.button>
+          {/* <motion.button initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.3, duration:0.3}} onClick={()=>leftSlide()} className='p-3 text-white rotate-180 rounded-full bg-text_secondary text-2xl'><FaArrowRightLong/></motion.button> */}
 
           <div className='flex flex-row items-center gap-20 p-10 text-base mt-10'>
              {
               categoryList.length > 0 && categoryList.map((category, index) =>(
-                <motion.div initial={{opacity:0}} whileInView={{opacity:100}} transition={{duration:0.3, delay: 0.3}} key={category.id} className={`${index === 1 ? "w-72 h-80": "w-40 h-44"}`}>
-                  <img src={category.banner} alt='category banner' className={`rounded-full ${index === 1 ? "w-64": "w-36"}`}/>
-                  <p className={`text-center mt-4 ${index == 1 && "text-white text-xl"} line-clamp-1`}>{category.name}</p>
+                <motion.div onClick={() => navigate(category.navigate)} initial={{opacity:0}} animate={{opacity:100}} transition={{duration:0.3, delay: 0.3}} key={category.id} className={`flex flex-col justify-center items-center cursor-pointer ${index === 1 ? "w-72 h-80": "w-44 h-44"}`}>
+                  <motion.img initial={{opacity: 0}} animate={{opacity:100}} transition={{duration: 0.6, delay:0.1}} src={category.banner} alt='category banner' className={`rounded-full ${index === 1 ? "w-64": "w-36"}`}/>
+                  <p className={`text-center mt-4 ${index === 1 ? "text-xl text-white": "text-base text-gray-300"}`}>{category.name}</p>
                 </motion.div>
               ))
              }
 
           </div>
           
-          <motion.button initial={{opacity:0}} whileInView={{opacity:100}} transition={{delay:0.3, duration:0.3}} onClick={()=>rightSlide()} className='p-3 text-white rounded-full bg-text_secondary text-2xl'><FaArrowRightLong/></motion.button>
+          {/* <motion.button initial={{opacity:0}} whileInView={{opacity:100}} transition={{delay:0.3, duration:0.3}} onClick={()=>rightSlide()} className='p-3 text-white rounded-full bg-text_secondary text-2xl'><FaArrowRightLong/></motion.button> */}
           
         </div>
       </div>
