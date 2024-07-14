@@ -79,7 +79,7 @@ function App() {
     // <RouterProvider router={router}>
       <div className='flex flex-row w-screen h-screen bg-backdrop text-text_secondary font-Montserrat overflow-hidden'>
         {/* Navigation Menu */}
-        <div className='w-1/6 h-screen flex justify-center items-center'>
+        <div className='w-1/6 h-screen hidden  lg:flex justify-center items-center'>
           <NavigationBar section={currentSection} />
         </div>
 
