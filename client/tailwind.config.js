@@ -11,6 +11,7 @@ export default {
         text_secondary: "#2D2D2D",
         blue_primary: "#0F33FF"
       },
+      
     },
   },
   plugins: [],
