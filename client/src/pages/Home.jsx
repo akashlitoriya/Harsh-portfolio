@@ -4,18 +4,18 @@ import CTAButton from '../components/CTAButton'
 import {delay, motion} from 'framer-motion'
 const Home = () => {
   return (
-    <div className=' w-full h-screen text-white text-5xl font-bold flex justify-center items-center snap-start'>
+    <div className=' w-full h-max min-h-screen text-white text-5xl font-bold flex justify-center items-center snap-start'>
       {/* Container  */}
-      <div className='flex flex-row items-center border-b-4 border-text_secondary'>
-        <div className='flex flex-col gap-6'>
-          <motion.h1 className='font-extrabold font-Montserrat text-5xl uppercase tracking-wider' initial={{opacity:0, y:-50}} whileInView={{opacity:100, y:0}} transition={{delay:0.3, duration:0.2}}>Harsh Mandloi</motion.h1>
-          <motion.div className='flex flex-row items-center gap-5 font-Montserrat text-text_secondary text-2xl font-semibold mb-8' initial={{opacity:0}} whileInView={{opacity:100}} transition={{delay:0.4, duration:0.2}}>
+      <div className='w-4/5 lg:w-fit flex flex-col md:flex-row items-center border-b-4 border-text_secondary'>
+        <div className='flex flex-col gap-3 md:gap-6'>
+          <motion.h1 className='font-extrabold font-Montserrat text-4xl lg:text-5xl uppercase tracking-wider text-center md:text-left' initial={{opacity:0, y:-50}} whileInView={{opacity:100, y:0}} transition={{delay:0.3, duration:0.2}}>Harsh Mandloi</motion.h1>
+          <motion.div className='flex flex-row items-center gap-5 font-Montserrat text-text_secondary text-lg lg:text-2xl font-semibold mb-4 md:mb-8' initial={{opacity:0}} whileInView={{opacity:100}} transition={{delay:0.4, duration:0.2}}>
             <span>3D Artist</span>
             <span>Graphic Designer</span>
           </motion.div>
-          <motion.div className='w-max' initial={{opacity:0}} whileInView={{opacity:100}} transition={{delay:0.6, duration:0.3}}>
+          {/* <motion.div className='w-max' initial={{opacity:0}} whileInView={{opacity:100}} transition={{delay:0.6, duration:0.3}}>
             <CTAButton text={"Hire Me"} primaryColor={'blue_primary'} textColor={'white'}/>
-          </motion.div>
+          </motion.div> */}
           
 
         </div>
