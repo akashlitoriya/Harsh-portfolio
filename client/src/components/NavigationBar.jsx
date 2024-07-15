@@ -21,13 +21,13 @@ const NavigationBar = ({section}) => {
         {
             id:3,
             num:4,
-            heading:"Review"
+            heading:"Contact"
         },
-        {
-            id:4,
-            num: 5,
-            heading: "Contact"
-        }
+        // {
+        //     id:4,
+        //     num: 5,
+        //     heading: "Review"
+        // }
 
     ]
     return (
