@@ -14,12 +14,12 @@ const Gallery = ({ itemList }) => {
 
   return (
     <div className="">
-      {itemList.length > 0 && (
+      {itemList?.length > 0 && (
         <div
           ref={container}
           className="w-full h-full columns-1 md:columns-2 lg:columns-3 gap-8"
         >
-          {itemList.length > 0 &&
+          {itemList?.length > 0 &&
             itemList.map((item, index) => {
               return (
                 <div key={item.projectId} className={"group h-fit mb-8 relative cursor-pointer"} onClick={()=>handleProjectOnClick(item)}>
