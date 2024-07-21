@@ -23,10 +23,15 @@ const ProjectSchema = new mongoose.Schema({
     required: true,
   },
 
-  url: {
+  file_url: {
     type: String,
     required: true,
   },
+  gallery:[
+    {
+      type: String,
+    }
+  ],
 
   category: {
     type: String,
@@ -40,6 +45,11 @@ const ProjectSchema = new mongoose.Schema({
   publicId: {
     type: String,
     required: true
+  },
+  createdAt:{
+    type: Date,
+    default: Date.now
+  
   }
 });
 
