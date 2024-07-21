@@ -1,5 +1,6 @@
 import React from 'react'
 import { ImCross } from "react-icons/im";
+import ImageSlider from './ImageSlider';
 const ProjectModal = ({project, closeModalHandler}) => {
   return (
     <div className='fixed top-0 left-0 w-screen h-full p-4 flex justify-center items-center backdrop-blur-md'>
@@ -8,8 +9,8 @@ const ProjectModal = ({project, closeModalHandler}) => {
         <button className='absolute top-3 right-3 lg:top-6 lg:right-6 text-lg text-white z-50' onClick={closeModalHandler}><ImCross /></button>
         
         <div className='h-full w-full rounded-xl'>
-            {project?.fileType?.match('image') && (<img src={project?.url} className='max-h-full rounded-xl'/>)}
-            {project?.fileType.match('video') && <video src={project.url} className='h-full rounded-xl' autoPlay loop />}
+            {project?.fileType?.match('image') && (<ImageSlider project={project} />)}  
+            {project?.fileType.match('video') && <video src={project.file_url} className='h-full rounded-xl' autoPlay loop />}
         </div>
       </div>
     </div>
