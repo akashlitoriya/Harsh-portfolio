@@ -37,7 +37,7 @@ const Work = () => {
         <div className='flex items-center'>
           {/* <motion.button initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.3, duration:0.3}} onClick={()=>leftSlide()} className='p-3 text-white rotate-180 rounded-full bg-text_secondary text-2xl'><FaArrowRightLong/></motion.button> */}
 
-          <div className='flex flex-col md:flex-row items-center gap-10 md:gap-20 p-10 text-base mt-4 md:mt-10'>
+          <div className='flex flex-col md:flex-row items-center gap-6 md:gap-20 p-10 text-base mt-3 md:mt-10'>
              {
               categoryList.length > 0 && categoryList.map((category, index) =>(
                 <motion.div onClick={() => navigate(category.navigate)} initial={{opacity:0}} animate={{opacity:100}} transition={{duration:0.3, delay: 0.3}} key={category.id} className={`flex flex-col justify-center items-center cursor-pointer ${index === 1 ? "w-52 h-56 md:w-72 md:h-80": "w-40 h-40 md:w-44 md:h-44"}`}>
