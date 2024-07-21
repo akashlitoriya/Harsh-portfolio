@@ -14,10 +14,7 @@ const ProductAnimation = () => {
     },[])
 
     async function fetchProductAnimation(){
-        dispatch(addLoader());
-        const data = await getProductAnimations();
-        setProductList(data);
-        dispatch(removeLoader());
+        dispatch(getProductAnimations(setProductList))
     }
 
     if(loading){
