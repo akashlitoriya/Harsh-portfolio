@@ -4,7 +4,7 @@ exports.uploadOnCloud = async(file, folder) => {
     try{
         let options = {folder};
         options.resource_type = "auto";
-        const result = await cloudinary.uploader.upload(file.tempFilePath, options);
+        const result = await cloudinary.uploader.upload(file.path, options);
         return result;
     }
     catch(err){

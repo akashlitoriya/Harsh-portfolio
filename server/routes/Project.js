@@ -4,8 +4,9 @@ const router = express.Router();
 
 //importing controllers
 const {createProject, getImportantPersonalProject, getImportantProductAnimation,getImportantProductVisualization} = require('../controllers/Project');
+const uploadFile = require('../middleware/uploadFileMiddleware')
 
-router.post('/createProject', createProject);
+router.post('/createProject',uploadFile.fields([{ name: 'mainFile', maxCount: 1 }, { name: 'gallery', maxCount: 8 }]), createProject);
 router.get('/getPersonalProjects', getImportantPersonalProject);
 router.get('/getProductAnimations', getImportantProductAnimation);
 router.get('/getProductVisualizations', getImportantProductVisualization);

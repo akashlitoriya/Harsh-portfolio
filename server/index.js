@@ -23,12 +23,12 @@ app.use(cors({
 }))
 
 //adding server files
-app.use(
-    fileupload({
-        useTempFiles: true,
-        tempFileDir: 'temp',
-    })
-)
+// app.use(
+//     fileupload({
+//         useTempFiles: true,
+//         tempFileDir: 'temp',
+//     })
+// )
 
 
 cloudinaryConnect();

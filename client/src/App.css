@@ -6,23 +6,19 @@ body {
   overflow-x: hidden;
 }
 
-body {
-  --sb-track-color: #2f363a;
-  --sb-thumb-color: #0f33ff;
-  --sb-size: 8px;
+
+
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-body::-webkit-scrollbar {
-  width: var(--sb-size);
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--sb-track-color);
+::-webkit-scrollbar-track {
+  background: #2f363a;
   border-radius: 10px;
 }
 
-body::-webkit-scrollbar-thumb {
-  background: var(--sb-thumb-color);
+::-webkit-scrollbar-thumb {
+  background: #0f33ff;
   border-radius: 10px;
 }
 
