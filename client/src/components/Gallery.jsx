@@ -25,7 +25,7 @@ const Gallery = ({ itemList }) => {
                 <div key={item.projectId} className={"group h-fit mb-8 relative cursor-pointer"} onClick={()=>handleProjectOnClick(item)}>
                   {item.fileType.match("image") && (
                     <img
-                      src={item.url}
+                      src={item.file_url}
                       alt={item.title}
                       className={
                         "object-cover w-full rounded-xl grayscale-0 transition-all duration-300 hover:scale-105 hover:grayscale-0 group-hover:opacity-80" +
@@ -35,11 +35,12 @@ const Gallery = ({ itemList }) => {
                   )}
                   {item.fileType.match("video") && (
                     <video
-                      src={item.url}
+                      src={item.file_url}
                       className={
                         "object-cover w-full rounded-xl grayscale-0 transition-all duration-300 hover:scale-105 group-hover:opacity-80" +
                         ` ${index % 2 == 0 ? "h-80" : "h-80"}`
                       }
+                      poster={item.gallery[0]}
                     />
                   )}
 

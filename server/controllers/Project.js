@@ -8,7 +8,8 @@ dotenv.config();
 exports.createProject = async(req, res) => {
     try{
         const{title, description, category, isImportant} = req.body;
-        const file = req.files.file;
+        //console.log("REQ FILES: ", req.files);
+        const file = req.files["mainFile"][0];
 
         if(!title || !description || !category || !isImportant){
             return res.status(400).json({message: "All fields are required."})
@@ -19,18 +20,30 @@ exports.createProject = async(req, res) => {
         }
         
         let cloudFile = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER);
-        //console.log("cloudFile: ", cloudFile);
+
+        let galleryUpload = [];
+        for(let i=0; i<req.files["gallery"].length; i++){
+            const galleryFile = req.files["gallery"][i];
+            galleryUpload.push(uploadOnCloud(galleryFile, process.env.CLOUDINARY_CLOUD_FOLDER));
+        }
+
+        galleryUpload = await Promise.allSettled(galleryUpload);
+        let galleryUrls = galleryUpload.map((file)=>{
+            return file.value?.secure_url;
+        })
 
         const newProject = await Project.create({
             title,
             description,
             category,
             important: isImportant,
-            url: cloudFile.secure_url,
+            file_url: cloudFile.secure_url,
             projectId: uuid(),
             fileType: file.mimetype.split('/')[0],
-            publicId: cloudFile.public_id
+            publicId: cloudFile.public_id,
+            gallery: galleryUrls
         })
+        //TODO: Remove file from server after uploading to cloud
 
         res.status(201).json({
             success: true,
@@ -38,7 +51,7 @@ exports.createProject = async(req, res) => {
         })
     }
     catch(err){
-        
+        console.log(err)
         res.status(500).json({
             success: false,
             message: "Failed to create project",
