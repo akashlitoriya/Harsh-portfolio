@@ -3,11 +3,15 @@ import './App.css'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import ProtectedRoute from './components/core/Auth/ProtectedRoute'
 import Home from './pages/Home'
+import ErrorPage from './components/core/ErrorPage'
+import LoginPage from './pages/Login'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 function App() {
   const router = createBrowserRouter([
     {
-      route: '/',
+      path: "/",
       element:(
         <ProtectedRoute>
           <Home />
@@ -16,15 +20,16 @@ function App() {
       errorElement: <ErrorPage />
     },
     {
-      route: '/login',
+      path: "/login",
       element: <LoginPage />,
       errorElement: <ErrorPage />
     }
   ])
   return (
-    <RouterProvider router={router}>
-      
-    </RouterProvider>
+    <Provider store = {store}>
+      <RouterProvider router={router}>
+      </RouterProvider>
+    </Provider>
   )
 }
 
