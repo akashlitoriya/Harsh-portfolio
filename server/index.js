@@ -8,6 +8,7 @@ const fileupload = require('express-fileupload');
 //importing routes
 const reviewRoutes = require('./routes/Review');
 const projectRoutes = require('./routes/Project');
+const userRoutes = require('./routes/User');
 
 const app = express();
 
@@ -22,13 +23,7 @@ app.use(cors({
     origin: "*"
 }))
 
-//adding server files
-// app.use(
-//     fileupload({
-//         useTempFiles: true,
-//         tempFileDir: 'temp',
-//     })
-// )
+
 
 
 cloudinaryConnect();
@@ -38,7 +33,12 @@ connectDB();
 //routes
 app.use('/api/v1/review', reviewRoutes);
 app.use('/api/v1/project', projectRoutes);
+app.use('/api/v1/user', userRoutes);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
+})
+
+app.get('/', (req, res) =>{
+    res.send("Server is live and running");
 })
