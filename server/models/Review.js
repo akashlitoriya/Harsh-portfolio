@@ -9,15 +9,15 @@ const reviewSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    company:{
+    email:{
         type: String,
         required: true,
     },
-    companyLogo:{
+    brandName:{
         type: String,
         required: true,
     },
-    companySocial:{
+    social:{
         type: String,
         required: true,
     },
