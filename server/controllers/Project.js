@@ -9,6 +9,9 @@ exports.createProject = async(req, res) => {
     try{
         const{title, description, category, isImportant} = req.body;
         //console.log("REQ FILES: ", req.files);
+        if(!req.files || !req.files["mainFile"]){
+            return res.status(400).json({message: "File is required."})
+        }
         const file = req.files["mainFile"][0];
 
         if(!title || !description || !category || !isImportant){
@@ -20,9 +23,8 @@ exports.createProject = async(req, res) => {
         }
         
         let cloudFile = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER);
-
         let galleryUpload = [];
-        for(let i=0; i<req.files["gallery"].length; i++){
+        for(let i=0; req.files["gallery"] &&  i<req.files["gallery"].length; i++){
             const galleryFile = req.files["gallery"][i];
             galleryUpload.push(uploadOnCloud(galleryFile, process.env.CLOUDINARY_CLOUD_FOLDER));
         }
