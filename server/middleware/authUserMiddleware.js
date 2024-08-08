@@ -8,7 +8,7 @@ const authUser = async(req, res, next) =>{
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         
-        const userExist = await User.findOne({user_id: decoded.user.id});
+        const userExist = await User.findOne({user_id: decoded.user.user_id});
         if(!userExist) return res.status(401).json({msg: "Token is not valid"});
 
         req.user = userExist;
