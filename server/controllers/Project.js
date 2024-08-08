@@ -35,6 +35,10 @@ exports.createProject = async(req, res) => {
             return file.value?.secure_url;
         })
 
+        if(file.mimetype.split('/')[0].match('image')){
+            galleryUrls.unshift(cloudFile.secure_url);
+        }
+
         const newProject = await Project.create({
             title,
             description,
@@ -46,7 +50,6 @@ exports.createProject = async(req, res) => {
             publicId: cloudFile.public_id,
             gallery: galleryUrls
         })
-        //TODO: Remove file from server after uploading to cloud
 
         fs.unlinkSync(file.path);
         for(let i=0; req.files["gallery"] && i<req.files["gallery"].length; i++){

@@ -22,8 +22,8 @@ const FileUploadBox = ({file, setFile}) => {
                     </div>
                 </div>
             ):(
-                <label className='cursor-pointer'>
-                    <div className='flex flex-col justify-center items-center text-base gap-2'>
+                <label className='cursor-pointer w-full h-full'>
+                    <div className='h-full flex flex-col justify-center items-center text-base gap-2'>
                         <IoCloudUploadOutline className='text-4xl text-cyan_primary'/>
                         <p>Click to upload or drag and drop</p>
                         <p className='text-xs'>SVG, PNG, JPG or GIF (MAX. 800x400px)</p>

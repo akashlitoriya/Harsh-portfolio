@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { addProject } from '../../services/project'
-import { FaStarOfLife } from "react-icons/fa6";
+import { FaStarOfLife } from "react-icons/fa";
 import FileUploadBox from '../common/FileUploadBox';
 import GalleryUploader from '../common/GalleryUploader';
 import { RxCross2 } from "react-icons/rx";
@@ -44,25 +44,36 @@ const AddProjectForm = () => {
         <div className='flex flex-row gap-6 w-full'>
           <div className='flex flex-col gap-2 w-full'>
               <label className='flex' htmlFor='title'>Title <span><FaStarOfLife className='text-glowing_pink text-xs'/></span></label>
-              <input type="text" required className='w-full bg-secondary_background px-4 py-2 rounded-lg focus:outline-none' placeholder='Enter title here' id="title" {...register("title", { required: "Title is required" })} />
+              <input type="text" className='w-full bg-secondary_background px-4 py-2 rounded-lg focus:outline-none' placeholder='Enter title here' id="title" {...register("title", { required: "Title is required" })} />
+              {
+                errors.title && <p className='text-red-500 text-xs'>{'please enter title'}</p>
+              }
           </div>
           <div className='flex flex-col gap-2 w-full'>
             <label htmlFor='category' className='flex'>Category <span><FaStarOfLife className='text-glowing_pink text-xs'/></span></label>
-            <select required id='select' {...register("category", { required: "Category is required" })} className='w-full bg-secondary_background px-4 py-2 rounded-lg focus:outline-none'>
+            <select id='select' {...register("category", { required: "Category is required" })} className='w-full bg-secondary_background px-4 py-2 rounded-lg focus:outline-none'>
+                <option value="">Select category</option>
                 <option value="Product Visualization">Product Visualization</option>
                 <option value="Product Animation">Product Animation</option>
                 <option value="Personal Project">Personal Project</option>
             </select>
+            {
+              errors.category && <p className='text-red-500 text-xs'>{'please select category'}</p>
+            }
           </div>
         </div>
         <div className='flex flex-col gap-2'>
             <label className='flex' htmlFor='description'>Description <span><FaStarOfLife className='text-glowing_pink text-xs'/></span></label>
-            <input type="text" id="description"className='bg-secondary_background px-4 py-2 rounded-lg focus:outline-none' placeholder='Enter description here' {...register("description", { required: "Description is required" })} />   
+            <input type="text" id="description"className='bg-secondary_background px-4 py-2 rounded-lg focus:outline-none' placeholder='Enter description here' {...register("description", { required: "Description is required" })} />  
+            {
+              errors.description && <p className='text-red-500 text-xs'>{'please enter description'}</p>
+            } 
         </div>
         
         <div className='flex flex-col gap-2'>
             <label htmlFor='file' className='flex'>File <span><FaStarOfLife className='text-glowing_pink text-xs'/></span></label>
             <FileUploadBox file={file} setFile={(file)=>setFile(file)}/>
+              
         </div>
         {
           file && (
