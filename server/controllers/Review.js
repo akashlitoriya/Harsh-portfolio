@@ -3,14 +3,18 @@ const Review = require('../models/Review');
 
 exports.writeReview = async(req, res) => {
     try{
-        const{name, company, review, companySocial} = req.body;
-        const companyLogo = req.files.logo;
+        const{name, brandName, review, social, email} = req.body;
+        if(!name || !brandName || !review || !social || !email){
+            return res.status(400).json({
+                message: "Please fill all fields"
+            })
+        }
         const newReview = await Review.create({
             name,
-            company,
+            email,
+            brandName,
             review,
-            companySocial,
-            companyLogo,
+            social,
             reviewId: uuid()
         });
 

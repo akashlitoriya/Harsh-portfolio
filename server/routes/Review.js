@@ -7,7 +7,7 @@ const router = express.Router();
 const {writeReview, getReviews,getPendingReviews} = require('../controllers/Review');
 const {authUser} = require('../middleware/authUserMiddleware')
 //routes
-router.post('/writeReview', writeReview);
+router.post('/addReview', writeReview);
 router.get('/getReviews', getReviews);
 router.get('/getPendingReviews', authUser, getPendingReviews)
 
