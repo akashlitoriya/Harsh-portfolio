@@ -20,7 +20,6 @@ exports.createProject = async(req, res) => {
         }
         
         let cloudFile = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER);
-
         let galleryUpload = [];
         for(let i=0; i<req.files["gallery"].length; i++){
             const galleryFile = req.files["gallery"][i];
