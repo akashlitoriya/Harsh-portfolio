@@ -2,6 +2,7 @@ const Project = require('../models/Project');
 const { uploadOnCloud, deleteFileOnCloud } = require('../utils/FileUploader');
 const dotenv = require('dotenv');
 const uuid = require("uuid4");
+const fs = require('fs');
 
 dotenv.config();
 
@@ -46,6 +47,11 @@ exports.createProject = async(req, res) => {
             gallery: galleryUrls
         })
         //TODO: Remove file from server after uploading to cloud
+
+        fs.unlinkSync(file.path);
+        for(let i=0; req.files["gallery"] && i<req.files["gallery"].length; i++){
+            fs.unlinkSync(req.files["gallery"][i].path);
+        }
 
         res.status(201).json({
             success: true,
