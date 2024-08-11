@@ -9,6 +9,7 @@ const fileupload = require('express-fileupload');
 const reviewRoutes = require('./routes/Review');
 const projectRoutes = require('./routes/Project');
 const userRoutes = require('./routes/User');
+const contactRoutes = require('./routes/Contact');
 
 const app = express();
 
@@ -34,6 +35,7 @@ connectDB();
 app.use('/api/v1/review', reviewRoutes);
 app.use('/api/v1/project', projectRoutes);
 app.use('/api/v1/user', userRoutes);
+app.use('/api/v1/contact', contactRoutes);
 
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
