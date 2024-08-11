@@ -9,3 +9,6 @@ export const project = {
 export const review = {
     addReview: `${backend}/api/v1/review/addReview`
 }
+export const contact = {
+    contactUs: `${backend}/api/v1/contact/contact`
+}

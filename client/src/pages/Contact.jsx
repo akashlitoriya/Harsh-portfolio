@@ -2,11 +2,29 @@ import React, {useState} from 'react'
 import CTAButton from '../components/CTAButton';
 import { IoLogoInstagram,IoLogoLinkedin, IoLogoYoutube } from "react-icons/io5";
 import { FaArtstation } from "react-icons/fa";
+import contactUs  from '../services/contactUsService';
+import {useDispatch} from 'react-redux'
 
 const Contact = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
+  const handleContact = async() => {
+    console.log("CONTACT DATA : ", name, email, message);
+    const data = {
+      name: name,
+      email: email,
+      message: message
+    }
+
+    dispatch(contactUs(data))
+    setName("");
+    setEmail("");
+    setMessage("");
+  }
+
   return (
     <div className='w-full min-h-screen flex justify-center items-center snap-start'>
       {/* Container  */}
@@ -14,15 +32,15 @@ const Contact = () => {
         {/* Input Boxes  */}
         <div className='w-full md:w-4/5 flex flex-col gap-6 md:gap-10 items-center'>
           <div className='w-full flex flex-col md:flex-row gap-6 md:gap-10'>
-            <input onChange={(e)=> setName(e.target.value)} placeholder='NAME' className='w-full md:w-1/2 py-3 pl-0 pr-5 bg-backdrop text-text_secondary font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
-            <input onChange={(e)=> setEmail(e.target.value)} placeholder='EMAIL' className='w-full md:w-1/2 py-3 pl-0 pr-5 bg-backdrop text-text_secondary font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
+            <input onChange={(e)=> setName(e.target.value)} value={name} placeholder='NAME' className='w-full md:w-1/2 py-3 pl-0 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
+            <input onChange={(e)=> setEmail(e.target.value)} value={email} placeholder='EMAIL' className='w-full md:w-1/2 py-3 pl-0 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
           </div>
 
-          <input onChange={(e)=> setMessage(e.target.value)} placeholder='WRITE YOU MESSAGE HERE...' className='w-full py-3 pl-0 pr-5 bg-backdrop text-text_secondary font-semibold text-base md:text-2xl border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
+          <input onChange={(e)=> setMessage(e.target.value)} value={message} placeholder='WRITE YOU MESSAGE HERE...' className='w-full py-3 pl-0 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
 
           {/* Button  */}
           <div className='w-full md:w-3/5 flex justify-center items-center'>
-            <CTAButton text={"Connect"} primaryColor={"blue_primary"} textColor={"white"}/>
+            <CTAButton text={"Connect"} primaryColor={"blue_primary"} textColor={"white"} handleSubmit={handleContact}/>
           </div>
           {/* Socials  */}
           <div className='w-full flex flex-row justify-between md:justify-center items-center gap-8 text-3xl text-text_secondary'>
