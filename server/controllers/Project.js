@@ -32,11 +32,14 @@ exports.createProject = async(req, res) => {
 
         galleryUpload = await Promise.allSettled(galleryUpload);
         let galleryUrls = galleryUpload.map((file)=>{
-            return file.value?.secure_url;
+            return {
+                url: file.value?.secure_url,
+                publicId: file.value?.public_id
+            };
         })
 
         if(file.mimetype.split('/')[0].match('image')){
-            galleryUrls.unshift(cloudFile.secure_url);
+            galleryUrls.unshift({url: cloudFile?.secure_url, publicId: cloudFile?.public_id});
         }
 
         const newProject = await Project.create({
@@ -162,5 +165,34 @@ exports.getProjects = async(req, res) =>{
     }
 }
 
+exports.deleteProject = async(req, res) =>{
+    try{
+        const {id} = req.params;
+        const project = await Project.findOne({projectId: id});
 
+        if(!project){
+            return res.status(404).json({
+                success: false,
+                message: "Project not found"
+            })
+        }
+        await deleteFileOnCloud(project.publicId);
+        for(let i=0; i<project.gallery.length; i++){
+            await deleteFileOnCloud(project.gallery[i].publicId);
+        }
+
+        await Project.deleteOne({projectId: id});
+        res.status(200).json({
+            message: "Project deleted successfully",
+        })
+
+    }catch(err){
+        console.error("Error Deleting Project : ",err);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            error: err.message
+        })
+    }
+}
 
