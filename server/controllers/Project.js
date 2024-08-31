@@ -143,5 +143,24 @@ exports.getImportantProductVisualization = async(req, res) => {
     }
 }
 
+exports.getProjects = async(req, res) =>{
+    try{
+        const projects = await Project.find({}, {publicId:0, _id:0, __v:0}).sort({createdAt: -1});
+
+        res.status(200).json({
+            success: true,
+            message: "Projects fetched successfully",
+            data: projects
+        })
+    }catch(err){
+        console.error("Error Fetching Projects : ",err);
+        res.status(500).json({
+            success: false,
+            message: "Internal Server Error",
+            error: err.message
+        })
+    }
+}
+
 
 
