@@ -6,6 +6,7 @@ export const products = {
     getPersonalProject: `${backend_url}/project/getPersonalProjectsAll`,
     getProductAnimation: `${backend_url}/project/getProductAnimationsAll`,
     getProductVisualization: `${backend_url}/project/getProductVisualizationsAll`,
+    getProjects: `${backend_url}/project/getProjects`,
 }
 
 export const auth = {
