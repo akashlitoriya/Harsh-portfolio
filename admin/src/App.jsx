@@ -8,6 +8,7 @@ import LoginPage from './pages/Login'
 import { Provider } from 'react-redux'
 import { store } from './store/store'
 import AddProject from './pages/AddProject'
+import ListProjects from './pages/ListProjects'
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -32,6 +33,14 @@ function App() {
       element: (
         <ProtectedRoute>
           <AddProject />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path: "/listProjects",
+      element: (
+        <ProtectedRoute>
+          <ListProjects />
         </ProtectedRoute>
       )
     }
