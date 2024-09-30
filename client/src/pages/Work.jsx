@@ -26,7 +26,7 @@ const Work = () => {
   return (
     <div className='min-h-screen text-5xl font-bold flex justify-center items-center snap-start'>
       {/* Container  */}
-      <div className='w-4/5 flex flex-col items-center'>
+      <div className='w-4/5 flex flex-col items-center p-10 bg-white bg-opacity-5 backdrop-blur-xl rounded-xl'>
         {/* Heading  */}
         <motion.div initial={{scale: 0}} whileInView={{scale:1}} transition={{delay:0.3, duration:0.3}} className='w-max'>
           <h1 className='text-white text-3xl lg:text-4xl w-fit'>Selected Work</h1>

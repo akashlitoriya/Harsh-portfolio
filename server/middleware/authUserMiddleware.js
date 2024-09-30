@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 
 const authUser = async(req, res, next) =>{
     try{
-        const token = req.header("Authorization")?.replace('Bearer ', '') || req.body("Authorization")?.replace('Bearer ', '');
+        const token = req.header("Authorization")?.replace('Bearer ', '') || req.body.Authorization?.replace('Bearer ', '');
         if(!token) return res.status(401).json({msg: "No token, authorization denied"});
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
