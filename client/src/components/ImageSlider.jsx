@@ -27,6 +27,7 @@ const variants = {
 
 
 const ImageSlider = ({ project }) => {
+    console.log("PROJECT : ", project)
     const [[page, direction], setPage] = useState([0, 0]);
     const imageIndex = wrap(0, project.gallery.length, page);
     const paginate = (newDirection) => {
@@ -44,7 +45,7 @@ const ImageSlider = ({ project }) => {
                     <motion.img
                         className='z-20 max-h-full'
                         key={page}
-                        src={project.gallery[imageIndex]}
+                        src={project.gallery[imageIndex].url}
                         custom={direction}
                         variants={variants}
                         initial="enter"
