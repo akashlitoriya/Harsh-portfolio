@@ -33,7 +33,7 @@ const NavigationBar = ({section}) => {
     const container = useRef(null);
     console.log(container.current?.offsetWidth)
     return (
-    <div ref={container} className='h-4/6 relative w-full grid grid-flow-col grid-cols-12'>
+    <div ref={container} className='h-4/6 relative w-full ml-3 rounded-xl bg-white bg-opacity-5 backdrop-blur-xl grid grid-flow-col grid-cols-12'>
         <ul className='flex flex-col justify-evenly h-full p-2 font-Montserrat text-xl col-span-5'>
             {
                 navItems.length > 0 && navItems.map((item)=>(
