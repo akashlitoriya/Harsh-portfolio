@@ -32,11 +32,11 @@ const Contact = () => {
         {/* Input Boxes  */}
         <div className='w-full md:w-4/5 flex flex-col gap-6 md:gap-10 items-center'>
           <div className='w-full flex flex-col md:flex-row gap-6 md:gap-10'>
-            <input onChange={(e)=> setName(e.target.value)} value={name} placeholder='NAME' className='w-full md:w-1/2 py-3 pl-0 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
-            <input onChange={(e)=> setEmail(e.target.value)} value={email} placeholder='EMAIL' className='w-full md:w-1/2 py-3 pl-0 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
+            <input onChange={(e)=> setName(e.target.value)} value={name} placeholder='NAME' className='w-full md:w-1/2 py-3 pl-5 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
+            <input onChange={(e)=> setEmail(e.target.value)} value={email} placeholder='EMAIL' className='w-full md:w-1/2 py-3 pl-5 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-2 md:border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
           </div>
 
-          <input onChange={(e)=> setMessage(e.target.value)} value={message} placeholder='WRITE YOU MESSAGE HERE...' className='w-full py-3 pl-0 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
+          <input onChange={(e)=> setMessage(e.target.value)} value={message} placeholder='WRITE YOU MESSAGE HERE...' className='w-full py-3 pl-5 pr-5 bg-backdrop text-white font-semibold text-base md:text-2xl border-b-4 border-text_secondary focus:outline-none focus:border-blue_primary'/>
 
           {/* Button  */}
           <div className='w-full md:w-3/5 flex justify-center items-center'>
