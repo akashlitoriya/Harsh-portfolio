@@ -13,8 +13,8 @@ export const addProject = (data, token) =>{
             console.log("ADD PROJECT RESPONSE > ", response);
         }catch(err){
             dispatch(setLoading(false));
-            toast.error(err.response.data.message);
             console.log("ADD PROJECT ERROR > ", err);
+            toast.error(err.response.data.message);
         }
     }
 }
@@ -44,7 +44,7 @@ export const deleteProject = (projectId, token) =>{
             console.log("DELETE PROJECT RESPONSE > ", response);
         }catch(err){
             dispatch(setLoading(false));
-            toast.error(err.response.data.message);
+            toast.error("Failed to delete project");
             console.log("DELETE PROJECT ERROR > ", err);   
         }
     }

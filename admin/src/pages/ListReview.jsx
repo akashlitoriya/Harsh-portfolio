@@ -26,6 +26,8 @@ const ListReview = () => {
   const handleDeleteReview = () => {
     console.log(reviewId);
     dispatch(deleteReview(reviewId, token));
+    const updateReviews = reviews.filter((review) => review.reviewId !== reviewId);
+    setReview(updateReviews);
     setShowDeleteModal(false);
     setReviewId(null);
   };
@@ -60,7 +62,7 @@ const ListReview = () => {
             </tr>
           </thead>
           <tbody className="overflow-y-scroll">
-            {reviews.length > 0 &&
+            {reviews && reviews.length > 0 &&
               reviews.map((review) => (
                 <ReviewCard
                   review={review}

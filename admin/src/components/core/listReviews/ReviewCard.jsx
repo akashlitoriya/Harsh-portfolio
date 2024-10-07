@@ -6,9 +6,9 @@ const ReviewCard = ({review, openDeleteModal}) => {
   const[showTooltip, setShowTooltip] = useState(false);
   return (
     <tr className='text-xs text-gray-700 border-b border-gray-300'>
-        <td className='px-2 py-3 overflow-hidden whitespace-nowrap text-center'>
-          {review.name}
-          <span>{review.approved ? 'Listed': 'Unlisted'}</span>
+        <td className='px-2 py-3 overflow-hidden whitespace-nowrap text-center flex'>
+          <span className='line-clamp-1'>{review.name}</span>
+          <span className={`ml-2 w-2 h-2 rounded-full ${review.approved? ' bg-green-500' : ' bg-red-500'}`}></span>
         </td>
         <td className='px-2 py-3 overflow-hidden whitespace-nowrap text-center'>{review.email}</td>
         <td className='px-2 py-3 overflow-hidden whitespace-nowrap text-center'>{review.brandName}</td>

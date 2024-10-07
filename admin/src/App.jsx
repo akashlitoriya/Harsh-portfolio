@@ -10,6 +10,7 @@ import { store } from './store/store'
 import AddProject from './pages/AddProject'
 import ListProjects from './pages/ListProjects'
 import {ToastContainer} from 'react-toastify'
+import ListReviews from './pages/ListReview'
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
@@ -41,6 +42,14 @@ function App() {
       element: (
         <ProtectedRoute>
           <ListProjects />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path:"/listReviews",
+      element:(
+        <ProtectedRoute>
+          <ListReviews />
         </ProtectedRoute>
       )
     }
