@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { MdOutlineModeEdit } from "react-icons/md";
 import { RiDeleteBin5Line } from "react-icons/ri";
 
-const ReviewCard = ({review, openDeleteModal}) => {
+const ReviewCard = ({review, openDeleteModal, openEditModal}) => {
   const[showTooltip, setShowTooltip] = useState(false);
   return (
     <tr className='text-xs text-gray-700 border-b border-gray-300'>
@@ -24,10 +24,10 @@ const ReviewCard = ({review, openDeleteModal}) => {
           }
         </td>
         <td className='py-3 flex gap-3 justify-center items-center text-lg'>
-          <button className=''>
+          <button className='' onClick={()=> openEditModal(review)}>
             <MdOutlineModeEdit/>
           </button>
-          <button className='text-red-600' onClick={()=>openDeleteModal(review.reviewId)}>
+          <button className='text-red-600' onClick={()=>openDeleteModal(review)}>
             <RiDeleteBin5Line/>
           </button>
         </td>

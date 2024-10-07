@@ -35,3 +35,21 @@ export const deleteReview = (reviewId, token) =>{
         }
     }
 }
+
+export const editReview =(data, token) => {
+    return async(dispatch) => {
+        try{
+            dispatch(setLoading(true));
+            const headers = {
+                "Authorization": `Bearer ${token}`
+            }
+            const response = await apiConnector(`${reviews.editReview}/${data.reviewId}`, 'PUT', data, headers, null);
+            dispatch(setLoading(false));
+            return response.data.message;
+        }catch(err){
+            console.log("Error editing review : ", err);
+            toast.error("Error editing review")
+            dispatch(setLoading(false));
+        }
+    }
+}

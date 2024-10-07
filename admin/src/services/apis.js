@@ -19,5 +19,6 @@ export const reviews ={
     getReviews: `${backend_url}/review/getReviews`,
     getPendingReviews: `${backend_url}/review/getPendingReviews`,
     reviews: `${backend_url}/review/reviews`,
-    deleteReview: `${backend_url}/review/deleteReview`
+    deleteReview: `${backend_url}/review/deleteReview`,
+    editReview: `${backend_url}/review/editReview`
 }

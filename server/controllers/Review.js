@@ -124,3 +124,29 @@ exports.deleteReview = async(req, res) => {
         })
     }
 }
+
+exports.editReview = async(req, res) => {
+    try{
+        const reviewId = req.params.id;
+        const {name, email, social, username, brandName, review} = req.body;
+
+        const reviewEntry = await Review.findOne({reviewId});
+        if(!reviewEntry){
+            return res.status(404).json({message: "Review not found"})
+        }
+
+        const updateReview = await Review.findOneAndUpdate({reviewId}, {
+            email: email,
+            name: name, 
+            brandName: brandName,
+            review: review,
+            social: social
+        })
+
+        res.status(200).json({message: "Review updated successfully"})
+
+    }catch(err){
+        console.log("Error occured while editing review : ", err);
+        res.status(500).json({message: "Internal Server Error"});
+    }
+}
