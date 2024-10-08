@@ -10,6 +10,7 @@ const reviewRoutes = require('./routes/Review');
 const projectRoutes = require('./routes/Project');
 const userRoutes = require('./routes/User');
 const contactRoutes = require('./routes/Contact');
+const backgroundRoutes = require('./routes/Background')
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use('/api/v1/review', reviewRoutes);
 app.use('/api/v1/project', projectRoutes);
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/contact', contactRoutes);
+app.use('/api/v1', backgroundRoutes)
 
 app.listen(port, ()=>{
     console.log(`Server is running on port ${port}`);
