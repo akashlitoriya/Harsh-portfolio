@@ -13,19 +13,9 @@ const ProjectCard = ({ project, fetchProject, onDelete }) => {
     }
     return (
         <>
-            <div className="col-span-2 text-left space-x-5 text-sm">
-                <button
-                    className={`text-lg `}
-                    onClick={() => setListOpened(!listOpened)}
-                >
-                    {listOpened ? (
-                        <IoIosArrowDown className="rotate-180" />
-                    ) : (
-                        <IoIosArrowDown />
-                    )}
-                </button>
-                <span>{project.title}</span>
-                {project.important && <span></span>}
+            <div className="col-span-2 text-left space-x-2 text-sm">
+                <span className="whitespace-nowrap">{project.title}</span>
+                {project.important && <span className="px-1 py-0.5 border border-green-400 rounded-md text-[8px] leading-10 text-green-500 bg-green-50 uppercase">Live</span>}
             </div>
             <div className="col-span-4 text-left text-sm">{project.description}</div>
             <div className="col-span-2 text-sm">{project.category}</div>

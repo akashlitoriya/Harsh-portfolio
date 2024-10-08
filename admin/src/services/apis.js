@@ -17,5 +17,8 @@ export const auth = {
 export const reviews ={
     writeReview: `${backend_url}/review/writeReview`,
     getReviews: `${backend_url}/review/getReviews`,
-    getPendingReviews: `${backend_url}/review/getPendingReviews`
+    getPendingReviews: `${backend_url}/review/getPendingReviews`,
+    reviews: `${backend_url}/review/reviews`,
+    deleteReview: `${backend_url}/review/deleteReview`,
+    editReview: `${backend_url}/review/editReview`
 }

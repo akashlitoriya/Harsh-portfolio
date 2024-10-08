@@ -18,6 +18,12 @@ const Home = () => {
               List Projects
             </div>
           </Link>
+
+          <Link to={`/listReviews`}>
+            <div className='cursor-pointer border-2 border-red-600 py-6 px-12 hover:bg-red-500 w-fit text-cream_primary'>
+              List Reviews
+            </div>
+          </Link>
         </div>
       </div>
     </div>

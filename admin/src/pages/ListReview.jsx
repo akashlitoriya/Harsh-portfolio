@@ -6,6 +6,7 @@ import Modal from "../components/common/Modal";
 import { CgDanger } from "react-icons/cg";
 import { deleteReview } from "../services/review";
 import Loader from '../components/core/Loader'
+import EditReviewModal from "../components/core/EditReviewModal";
 
 const ListReview = () => {
   const dispatch = useDispatch();
@@ -13,7 +14,8 @@ const ListReview = () => {
   const {loading} = useSelector((state) => state.loader);
   const [reviews, setReview] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [reviewId, setReviewId] = useState(null);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedReview, setSelectedReview] = useState(null);
 
   useEffect(() => {
     fetchReview();
@@ -24,15 +26,27 @@ const ListReview = () => {
     setReview(data);
   }
   const handleDeleteReview = () => {
-    console.log(reviewId);
-    dispatch(deleteReview(reviewId, token));
+    dispatch(deleteReview(selectedReview.reviewId, token));
+    const updateReviews = reviews.filter((review) => review.reviewId !== selectedReview.reviewId);
+    setReview(updateReviews);
     setShowDeleteModal(false);
-    setReviewId(null);
+    setSelectedReview(null);
   };
-  const openDeleteModal = (reviewId) => {
+  const openDeleteModal = (review) => {
     setShowDeleteModal(true);
-    setReviewId(reviewId);
+    setSelectedReview(review);
   };
+
+  const openEditModal = (review) => {
+    setSelectedReview(review)
+    setShowEditModal(true);
+  }
+
+  const closeEditModal = (review) => {
+    setSelectedReview(null);
+    setShowEditModal(false);
+  }
+
   if(loading){
     return <Loader />
   }
@@ -60,12 +74,13 @@ const ListReview = () => {
             </tr>
           </thead>
           <tbody className="overflow-y-scroll">
-            {reviews.length > 0 &&
+            {reviews && reviews.length > 0 &&
               reviews.map((review) => (
                 <ReviewCard
                   review={review}
                   key={review?.reviewId}
                   openDeleteModal={openDeleteModal}
+                  openEditModal = {openEditModal}
                 />
               ))}
           </tbody>
@@ -88,6 +103,11 @@ const ListReview = () => {
           <CgDanger className="text-red-600"/>
         </Modal>
       )}
+      {
+        showEditModal && (
+          <EditReviewModal closeEditModal={closeEditModal} review={selectedReview}/>
+        )
+      }
     </div>
   );
 };
