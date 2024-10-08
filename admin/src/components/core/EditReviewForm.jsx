@@ -65,7 +65,7 @@ const EditReviewForm = ({review}) => {
                 errors.social && <span className='text-red-600 text-xs'>Instagram username is required</span>
             }
 
-            <button className='w-full max-w-sm bg-blue_primary rounded-lg px-4 py-2 text-white transition-all duration-200 hover:scale-95'>Add Review</button>
+            <button className='w-full max-w-sm bg-blue_primary rounded-lg px-4 py-2 text-white transition-all duration-200 hover:scale-95'>Edit Review</button>
         </form>
       
     </div>
