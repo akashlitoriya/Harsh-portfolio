@@ -5,7 +5,7 @@ import { IoLogoInstagram } from "react-icons/io5";
 import {editReview} from '../../services/review'
 import { useDispatch, useSelector } from 'react-redux';
 
-const EditReviewForm = ({review, setShowEditModal}) => {
+const EditReviewForm = ({review, setShowEditModal, updateReview}) => {
     const {token} = useSelector((state) => state.user)
     const {register, handleSubmit, formState:{errors}, reset} = useForm({
         defaultValues:{
@@ -18,12 +18,14 @@ const EditReviewForm = ({review, setShowEditModal}) => {
         }
     });
     const dispatch = useDispatch();
-    const handleReviewSubmit = (data) => {
-        data.social = `${data.social}`;
+    const handleReviewSubmit = async(data) => {
+        data.social = `https://www.instagram.com/${data.social}`;
         data.reviewId = review.reviewId;
-        dispatch(editReview(data, token));
-        setShowEditModal(false);
-        //reset();
+        const response = await dispatch(editReview(data, token));
+        if(response.status === 200){
+            updateReview(response.data?.updatedReview);
+            setShowEditModal(false);
+        }
     }
   return (
     <div>

@@ -141,9 +141,10 @@ exports.editReview = async(req, res) => {
             brandName: brandName,
             review: review,
             social: social
-        })
+        }, {new: true}
+        )
 
-        res.status(200).json({message: "Review updated successfully"})
+        res.status(200).json({message: "Review updated successfully", updatedReview: updateReview})
 
     }catch(err){
         console.log("Error occured while editing review : ", err);
