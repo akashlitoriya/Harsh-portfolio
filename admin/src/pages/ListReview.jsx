@@ -105,7 +105,7 @@ const ListReview = () => {
       )}
       {
         showEditModal && (
-          <EditReviewModal closeEditModal={closeEditModal} review={selectedReview}/>
+          <EditReviewModal closeEditModal={closeEditModal} review={selectedReview} setShowEditModal={setShowEditModal}/>
         )
       }
     </div>

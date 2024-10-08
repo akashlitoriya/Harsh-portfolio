@@ -2,18 +2,16 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import { FaStarOfLife } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io5";
-import { toast } from 'react-toastify';
 import {editReview} from '../../services/review'
 import { useDispatch, useSelector } from 'react-redux';
 
-const EditReviewForm = ({review}) => {
-    console.log("REVIEW : ", review)
+const EditReviewForm = ({review, setShowEditModal}) => {
     const {token} = useSelector((state) => state.user)
     const {register, handleSubmit, formState:{errors}, reset} = useForm({
         defaultValues:{
             email: review.email,
             name: review.name,
-            social: review.social,
+            social: review.social.split('.com/')[1],
             brandName: review.brandName,
             review: review.review,
 
@@ -22,9 +20,9 @@ const EditReviewForm = ({review}) => {
     const dispatch = useDispatch();
     const handleReviewSubmit = (data) => {
         data.social = `${data.social}`;
-        console.log("EdIT FORM DATA : ", data);
         data.reviewId = review.reviewId;
         dispatch(editReview(data, token));
+        setShowEditModal(false);
         //reset();
     }
   return (
