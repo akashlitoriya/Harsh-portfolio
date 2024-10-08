@@ -45,6 +45,7 @@ export const editReview =(data, token) => {
             }
             const response = await apiConnector(`${reviews.editReview}/${data.reviewId}`, 'PUT', data, headers, null);
             dispatch(setLoading(false));
+            toast.success("Review updated");
             return response;
         }catch(err){
             console.log("Error editing review : ", err);
