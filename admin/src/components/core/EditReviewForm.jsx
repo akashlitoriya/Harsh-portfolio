@@ -2,30 +2,30 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import { FaStarOfLife } from "react-icons/fa6";
 import { IoLogoInstagram } from "react-icons/io5";
-import { toast } from 'react-toastify';
 import {editReview} from '../../services/review'
 import { useDispatch, useSelector } from 'react-redux';
 
-const EditReviewForm = ({review}) => {
-    console.log("REVIEW : ", review)
+const EditReviewForm = ({review, setShowEditModal, updateReview}) => {
     const {token} = useSelector((state) => state.user)
     const {register, handleSubmit, formState:{errors}, reset} = useForm({
         defaultValues:{
             email: review.email,
             name: review.name,
-            social: review.social,
+            social: review.social.split('.com/')[1],
             brandName: review.brandName,
             review: review.review,
 
         }
     });
     const dispatch = useDispatch();
-    const handleReviewSubmit = (data) => {
-        data.social = `${data.social}`;
-        console.log("EdIT FORM DATA : ", data);
+    const handleReviewSubmit = async(data) => {
+        data.social = `https://www.instagram.com/${data.social}`;
         data.reviewId = review.reviewId;
-        dispatch(editReview(data, token));
-        //reset();
+        const response = await dispatch(editReview(data, token));
+        if(response.status === 200){
+            updateReview(response.data?.updatedReview);
+            setShowEditModal(false);
+        }
     }
   return (
     <div>

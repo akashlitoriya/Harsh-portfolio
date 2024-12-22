@@ -42,7 +42,7 @@ const ProjectSchema = new mongoose.Schema({
 
   category: {
     type: String,
-    enum: ["Product Visualization", "Product Animation", "Personal Project"],
+    enum: ["Product Mockup", "Product Animation", "Brand Visual", "Personal Project"],
     required: true,
   },
   fileType: {

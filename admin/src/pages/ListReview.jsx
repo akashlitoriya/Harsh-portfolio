@@ -47,6 +47,11 @@ const ListReview = () => {
     setShowEditModal(false);
   }
 
+  const updateReview = (updatedReview) =>{
+    let temp = reviews.map((review) => review.reviewId.match(updatedReview.reviewId)? updatedReview : review);
+    setReview(temp);
+  }
+
   if(loading){
     return <Loader />
   }
@@ -105,7 +110,7 @@ const ListReview = () => {
       )}
       {
         showEditModal && (
-          <EditReviewModal closeEditModal={closeEditModal} review={selectedReview}/>
+          <EditReviewModal closeEditModal={closeEditModal} review={selectedReview} setShowEditModal={setShowEditModal} updateReview={updateReview}/>
         )
       }
     </div>

@@ -31,7 +31,7 @@ const GalleryUploader = ({gallery, setGallery}) => {
         
         <label htmlFor='gallery' className='w-full cursor-pointer'>
             <div className='w-full px-4 py-2 bg-secondary_background rounded-lg'>
-                <p>Upload File</p>
+                <p className='px-3 py-2 rounded-md bg-yellow-300 w-fit text-black font-semibold'>Upload File</p>
             </div>
             <input type='file' accept='image/jpg, image/jpeg, image/png' id='gallery' className='hidden' onChange={(e)=>handleFileAdd(e)}/>
         </label>

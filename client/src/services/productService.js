@@ -2,18 +2,34 @@ import apiConnector from "./axiosInstance";
 import {project} from './apiPaths';
 import { addLoader, removeLoader } from "../store/loaderSlice";
 
-export function getProductVisualizations(setProductList){
+export function getProductMockup(setProductList){
     return async(dispatch) =>{
         dispatch(addLoader())
         try{
             setTimeout(()=>{
 
             }, 10*1000);
-            const response = await apiConnector("GET", project.productVisualization);
+            const response = await apiConnector("GET", project.productMockup);
             setProductList( response.data?.data);
             dispatch(removeLoader())
         }catch(err){
-            console.log("ERROR FETCHING PRODUCT VISUALIZATION : ", err)
+            console.log("ERROR FETCHING PRODUCT MOCKUP : ", err)
+        }
+    }
+}
+
+export function getBrandVisual(setProductList){
+    return async(dispatch) =>{
+        dispatch(addLoader())
+        try{
+            setTimeout(()=>{
+
+            }, 10*1000);
+            const response = await apiConnector("GET", project.brandVisual);
+            setProductList( response.data?.data);
+            dispatch(removeLoader())
+        }catch(err){
+            console.log("ERROR FETCHING BRAND VISUAL : ", err)
         }
     }
 }

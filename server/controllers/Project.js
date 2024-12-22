@@ -79,17 +79,17 @@ exports.getImportantProductAnimation = async(req, res) => {
         const projects = await Project.find({important: true,
             category: "Product Animation"
         }, {publicId:0, _id:0, __v:0}).sort({createdAt: -1});
-
+        console.log("PRODUCT ANIMATION : ", projects);
         res.status(200).json({
             success: true,
-            message: "Important projects fetched successfully",
+            message: "Important Product Animation fetched successfully",
             data: projects
         })
     }catch(err){
         console.error(err);
         res.status(500).json({
             success: false,
-            message: "Failed to fetch important projects",
+            message: "Failed to fetch important Product Animations",
             error: err.message
         })
     }
@@ -107,7 +107,7 @@ exports.getImportantPersonalProject = async(req, res) => {
 
         res.status(201).json({
             success: true,
-            message: "Important 3d renders fetched successfully",
+            message: "Important Personal Projects fetched successfully",
             data: projects
         })
     }
@@ -115,24 +115,24 @@ exports.getImportantPersonalProject = async(req, res) => {
         console.error(err);
         res.status(500).json({
             success: false,
-            message: "Failed to fetch important 3d renders",
+            message: "Failed to fetch important Personal Projects",
             error: err.message
         })
     }
 }
 
-exports.getImportantProductVisualization = async(req, res) => {
+exports.getImportantProductMockup = async(req, res) => {
     try{
         const projects = await Project.find(
             {
                 important: true,
-                category: "Product Visualization",
+                category: "Product Mockup",
             },{publicId:0, _id:0, __v:0}
         ).sort({createdAt: -1});
 
         res.status(201).json({
             success: true,
-            message: "Important 3d renders fetched successfully",
+            message: "Important Product Mockup fetched successfully",
             data: projects
         })
     }
@@ -140,7 +140,32 @@ exports.getImportantProductVisualization = async(req, res) => {
         console.error(err);
         res.status(500).json({
             success: false,
-            message: "Failed to fetch important 3d renders",
+            message: "Failed to fetch important Product Mockup",
+            error: err.message
+        })
+    }
+}
+
+exports.getImportantBrandVisual = async(req, res) => {
+    try{
+        const projects = await Project.find(
+            {
+                important: true,
+                category: "Brand Visual",
+            },{publicId:0, _id:0, __v:0}
+        ).sort({createdAt: -1});
+
+        res.status(201).json({
+            success: true,
+            message: "Important Brand Visual fetched successfully",
+            data: projects
+        })
+    }
+    catch(err){
+        console.error(err);
+        res.status(500).json({
+            success: false,
+            message: "Failed to fetch important Brand Visual",
             error: err.message
         })
     }
