@@ -53,8 +53,9 @@ const AddProjectForm = () => {
             <label htmlFor='category' className='flex'>Category <span><FaStarOfLife className='text-glowing_pink text-xs'/></span></label>
             <select id='select' {...register("category", { required: "Category is required" })} className='w-full bg-secondary_background px-4 py-2 rounded-lg focus:outline-none'>
                 <option value="">Select category</option>
-                <option value="Product Visualization">Product Visualization</option>
+                <option value="Product Mockup">Product Mockup</option>
                 <option value="Product Animation">Product Animation</option>
+                <option value="Brand Visual">Brand Visual</option>
                 <option value="Personal Project">Personal Project</option>
             </select>
             {

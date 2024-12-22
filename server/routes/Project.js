@@ -7,7 +7,8 @@ const {
   createProject,
   getImportantPersonalProject,
   getImportantProductAnimation,
-  getImportantProductVisualization,
+  getImportantProductMockup,
+  getImportantBrandVisual,
   getProjects,
   deleteProject
 } = require("../controllers/Project");
@@ -25,7 +26,8 @@ router.post(
 );
 router.get("/getPersonalProjects", getImportantPersonalProject);
 router.get("/getProductAnimations", getImportantProductAnimation);
-router.get("/getProductVisualizations", getImportantProductVisualization);
+router.get("/getProductMockups", getImportantProductMockup);
+router.get("/getBrandVisuals", getImportantBrandVisual);
 router.get("/getProjects", getProjects);
 router.delete("/deleteProject/:id", authUser, deleteProject);
 
