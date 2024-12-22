@@ -22,3 +22,22 @@ export const login = (data, navigate) =>{
         }
     }
 }
+
+export const authCheck = (token, navigate) => {
+    return async(dispatch) => {
+        try{
+            dispatch(setLoading(true));
+            const response = apiConnector(auth.authCheck, 'GET', {}, {Authorization: `Bearer ${token}`}).then((data) => {
+                console.log(`Successful response of auth check - ${response}`)
+                dispatch(setLoading(false))
+            }).catch((err) => {
+                console.log(`Failed response of auth check - ${err}`);
+                navigate('/login')
+                dispatch(setLoading(false));
+            })
+            
+        }catch(err){
+            console.log("Error");
+        }
+    }
+}

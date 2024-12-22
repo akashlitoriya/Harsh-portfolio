@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom'
 import { GiFilmProjector } from "react-icons/gi";
 import { FaPlusCircle } from "react-icons/fa";
 import { LiaCommentSolid } from "react-icons/lia";
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { authCheck } from '../services/auth';
 
 
 const Home = () => {
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const token = useSelector(state => state.user.token);
+  useEffect(()=> {
+    dispatch(authCheck(token, navigate))
+  },[])
   return (
     <div className='bg-backdrop max-w-screen min-h-screen flex justify-center items-center'>
       <div className='max-w-6xl w-full border-blue-200 border-2 p-10 space-y-5'>

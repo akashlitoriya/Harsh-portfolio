@@ -11,7 +11,8 @@ export const products = {
 }
 
 export const auth = {
-    login: `${backend_url}/user/login`
+    login: `${backend_url}/user/login`,
+    authCheck: `${backend_url}/user/authCheck`
 }
 
 export const reviews ={
