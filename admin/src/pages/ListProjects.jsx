@@ -57,6 +57,11 @@ const ListProjects = () => {
                 }
 
             </div>
+            {
+                projects && projects.length === 0 && (
+                    <div className='text-center'>No Project Found</div>
+                )
+            }
 
         </div>
       
