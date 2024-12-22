@@ -40,7 +40,7 @@ const Gallery = ({ itemList }) => {
                         "object-cover w-full rounded-xl grayscale-0 transition-all duration-300 hover:scale-105 group-hover:opacity-80" +
                         ` ${index % 2 == 0 ? "h-80" : "h-80"}`
                       }
-                      poster={item.gallery[0]}
+                      poster={item.gallery[0].url}
                     />
                   )}
 

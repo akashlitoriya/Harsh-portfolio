@@ -8,20 +8,20 @@ import { useSelector, useDispatch } from 'react-redux';
 const ProductAnimation = () => {
   const {loading} = useSelector((state) => state.loader)
   const dispatch = useDispatch();
-    const [productList, setProductList] = useState([]);
+    const [projectList, setProjectList] = useState([]);
     useEffect(()=>{
         fetchProductAnimation();
     },[])
 
     async function fetchProductAnimation(){
-        dispatch(getProductAnimations(setProductList))
+        dispatch(getProductAnimations(setProjectList))
     }
 
     if(loading){
       return (<Loader />)
     }
 
-    console.log("PRODUCT ANIMATION LIST : ", productList);
+    console.log("PRODUCT ANIMATION LIST : ", projectList);
   return (
     <div className='min-h-screen w-screen overflow-x-hidden flex flex-col justify-center items-center bg-backdrop'>
       <div className='w-max mt-6 md:mt-10'>
@@ -29,7 +29,13 @@ const ProductAnimation = () => {
           <p className='h-[2px] md:h-1 bg-blue_primary'></p>
         </div>
       <div className='w-full md:w-[1200px] p-8 rounded-xl'>
-        <Gallery itemList={productList}/>
+      {
+          projectList && projectList.length === 0 ? (
+            <div className='text-gray-300 text-xl text-center font-semibold'>No Project Found</div>
+          ):(
+            <Gallery itemList={projectList}/>
+          )
+        }
       </div>
     </div>
   )

@@ -8,13 +8,13 @@ import { useSelector, useDispatch } from "react-redux";
 const BrandVisual = () => {
   const {loading} = useSelector(store=>store.loader);
   const dispatch = useDispatch();
-  const [productList, setProductList] = useState([]);
+  const [projectList, setProjectList] = useState([]);
   useEffect(() => {
     fetchBrandVisual();
   }, []);
 
   async function fetchBrandVisual() {
-    const data = dispatch(getBrandVisual(setProductList));
+    const data = dispatch(getBrandVisual(setProjectList));
   }
 
   return (
@@ -25,7 +25,13 @@ const BrandVisual = () => {
           <p className='h-[2px] md:h-1 bg-blue_primary'></p>
         </div>
       <div className="w-full md:w-[1200px] p-8 rounded-xl">
-        <Gallery itemList={productList} />
+      {
+          projectList && projectList.length === 0 ? (
+            <div className='text-gray-300 text-xl text-center font-semibold'>No Project Found</div>
+          ):(
+            <Gallery itemList={projectList}/>
+          )
+        }
       </div>
     </div>
     )

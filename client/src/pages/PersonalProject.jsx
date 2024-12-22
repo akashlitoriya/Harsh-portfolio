@@ -33,7 +33,14 @@ const PersonalProject = () => {
           <p className='h-[2px] md:h-1 bg-blue_primary'></p>
         </div>
       <div className='w-full md:w-[1200px] p-8 rounded-xl'>
-        <Gallery itemList={projectList}/>
+        {
+          projectList && projectList.length === 0 ? (
+            <div className='text-gray-300 text-xl text-center font-semibold'>No Project Found</div>
+          ):(
+            <Gallery itemList={projectList}/>
+          )
+        }
+        
       </div>
     </div>
   )
