@@ -53,8 +53,8 @@ const AppLayout = () => {
   }, []);
   //console.log(currentSection);
   return (
-    <div className="flex flex-row w-screen h-screen bg-transparent text-text_secondary font-Montserrat overflow-hidden">
-        <img src={BackImage} alt='background' className='absolute w-screen h-screen top-0 left-0 -z-10'/>
+    <div className="flex flex-row w-screen h-screen bg-transparent text-gray-300 font-Montserrat overflow-hidden">
+        <img src={BackImage} alt='background' className='absolute w-screen h-screen object-cover top-0 left-0 -z-10'/>
         {/* Navigation Menu */}
         <div className="w-1/6 h-screen hidden  lg:flex justify-center items-center">
           <NavigationBar section={currentSection} />

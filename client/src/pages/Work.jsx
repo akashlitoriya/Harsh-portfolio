@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaArrowRightLong } from "react-icons/fa6";
 import workCategories from '../utils/workCategories';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -37,12 +36,12 @@ const Work = () => {
         <div className='flex items-center'>
           {/* <motion.button initial={{opacity:0}} animate={{opacity:1}} transition={{delay:0.3, duration:0.3}} onClick={()=>leftSlide()} className='p-3 text-white rotate-180 rounded-full bg-text_secondary text-2xl'><FaArrowRightLong/></motion.button> */}
 
-          <div className='flex flex-col md:flex-row items-center gap-6 md:gap-20 p-10 text-base mt-3 md:mt-10'>
+          <div className='grid grid-cols-1 md:grid-cols-2 items-center gap-5 text-base mt-3 md:mt-6 border-0 border-green-500'>
              {
               categoryList.length > 0 && categoryList.map((category, index) =>(
-                <motion.div onClick={() => navigate(category.navigate)} initial={{opacity:0}} animate={{opacity:100}} transition={{duration:0.3, delay: 0.3}} key={category.id} className={`flex flex-col justify-center items-center cursor-pointer w-40 h-40 md:w-44 md:h-44`}>
-                  <motion.img initial={{opacity: 0}} animate={{opacity:100}} transition={{duration: 0.6, delay:0.1}} src={category.banner} alt='category banner' className={`rounded-full w-28 md:w-36`}/>
-                  <p className={`text-center mt-4 ${index === 1 ? "text-base md:text-xl text-white": "text-sm md:text-base text-gray-300"}`}>{category.name}</p>
+                <motion.div onClick={() => navigate(category.navigate)} initial={{opacity:0}} animate={{opacity:100}} transition={{duration:0.3, delay: 0.3}} key={category.id} className={`flex flex-col justify-center items-center cursor-pointer h-32 md:w-64 md:h-44 border-0 rounded-lg border-blue-500 overflow-hidden`}>
+                  <motion.img initial={{opacity: 0}} animate={{opacity:100}} transition={{duration: 0.6, delay:0.1}} src={category.banner} alt='category banner' className={`object-fill object-center hover:scale-110 duration-200 transition-all`}/>
+                  {/* <p className={`text-center mt-4 text-base md:text-xl text-white`}>{category.name}</p> */}
                 </motion.div>
               ))
              }
