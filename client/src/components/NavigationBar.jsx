@@ -38,7 +38,7 @@ const NavigationBar = ({section}) => {
             {
                 navItems.length > 0 && navItems.map((item)=>(
                     <li key={item.id} className={`w-full`}>
-                        <p className={` ${item.id === section? "text-white text-right": "hidden"}`}>0{item.num}</p>
+                        <p className={` ${item.id === section? "text-white font-semibold text-right": "hidden"}`}>0{item.num}</p>
                         <p className={` ${item.id !== section? "block h-[1.75rem]":"hidden"}`}></p>
                     </li>
                 ))
@@ -59,7 +59,7 @@ const NavigationBar = ({section}) => {
                 navItems.length > 0 && navItems.map((item)=>(
                     <li key={item.id} className={`w-full`}>
                         <p className={`w-1/2 ${item.id !== section? "block":"hidden"}`}>0{item.num}</p>
-                        <p className={`w-1/2 ${item.id !== section? "hidden": "block text-white"}`}>{item.heading}</p>
+                        <p className={`w-1/2 ${item.id !== section? "hidden": "block text-white font-semibold"}`}>{item.heading}</p>
                         
                     </li>
                 ))
