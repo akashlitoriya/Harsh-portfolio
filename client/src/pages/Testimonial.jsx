@@ -3,6 +3,7 @@ import { motion, useAnimation } from "framer-motion";
 import { getReviews } from "../services/reviewService";
 import { useDispatch } from "react-redux";
 import InfiniteHorizontalScroll from "../components/InfiniteHorizontalScroll";
+import InfiniteScrollSkeleton from "../components/InfiniteScrollSkeleton";
 
 const Testimonial = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,14 @@ const Testimonial = () => {
         </motion.div>
 
         <div className="w-full max-w-[1400px]">
-          <InfiniteHorizontalScroll items={reviews}/>
+          {
+            reviews && reviews.length > 0 ? (
+              <InfiniteHorizontalScroll items={reviews}/>
+            ):(
+              <InfiniteScrollSkeleton />
+            )
+          }
+          
         </div>        
       </div>
     </div>
