@@ -1,11 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { getReviews } from "../services/reviewService";
+import { useDispatch } from "react-redux";
+import InfiniteHorizontalScroll from "../components/InfiniteHorizontalScroll";
 
 const Testimonial = () => {
-  return (
-    <div className='h-screen font-bold text-5xl text-blue_primary  snap-start'>
-      Testimonial
-    </div>
-  )
-}
+  const dispatch = useDispatch();
+  const [reviews, setReview] = useState([]);
 
-export default Testimonial
+ useEffect(() => {
+    const data = dispatch(getReviews(setReview));
+  }, []);
+
+  console.log(reviews);
+  return (
+    <div className="h-screen font-bold text-5xl text-blue_primary snap-start flex justify-center items-center">
+      <div className="w-11/12 md:w-4/5 flex flex-col gap-6 items-center p-4 md:p-10 bg-white bg-opacity-5 backdrop-blur-md rounded-xl">
+        <motion.div
+          initial={{ scale: 0 }}
+          whileInView={{ scale: 1 }}
+          transition={{ delay: 0.3, duration: 0.3 }}
+          className="w-max"
+        >
+          <h1 className="text-white text-3xl lg:text-4xl w-fit">Reviews</h1>
+          <p className="h-[2px] md:h-1 bg-blue_primary"></p>
+        </motion.div>
+
+        <div className="w-full max-w-[1400px]">
+          <InfiniteHorizontalScroll items={reviews}/>
+        </div>        
+      </div>
+    </div>
+  );
+};
+
+export default Testimonial;

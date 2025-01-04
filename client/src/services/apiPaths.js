@@ -8,7 +8,8 @@ export const project = {
 }
 
 export const review = {
-    addReview: `${backend}/api/v1/review/addReview`
+    addReview: `${backend}/api/v1/review/addReview`,
+    getReviews: `${backend}/api/v1/review/getReviews`
 }
 export const contact = {
     contactUs: `${backend}/api/v1/contact/contact`

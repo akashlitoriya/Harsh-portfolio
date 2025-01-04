@@ -19,8 +19,13 @@ const NavigationBar = ({section}) => {
             heading: "About"
         },
         {
-            id:3,
-            num:4,
+            id: 3,
+            num: 4,
+            heading: "Reviews"
+        },
+        {
+            id:4,
+            num:5,
             heading:"Contact"
         },
         // {

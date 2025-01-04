@@ -17,3 +17,16 @@ export function addReview(reviewData){
         }
     }
 }
+
+export function getReviews(setReview){
+    return async(dispatch) => {
+        try{
+            const response = await apiConnector('GET', review.getReviews);
+            setReview(response?.data?.reviews)
+            return response;
+        }catch(err){
+            console.log("ERROR FETCHING REVIEWS : ", err);
+
+        }
+    }
+}

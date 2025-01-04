@@ -76,11 +76,12 @@ const AppLayout = () => {
             <AboutMe />
           </div>
           <div ref={(el) => (sectionsRef.current[3] = el)}>
+            <Testimonial />
+          </div>
+          <div ref={(el) => (sectionsRef.current[4] = el)}>
             <Contact />
           </div>
-          {/* <div ref={(el) => (sectionsRef.current[4] = el)}>
-            <Testimonial />
-          </div> */}
+         
         </div>
       </div>
   )
