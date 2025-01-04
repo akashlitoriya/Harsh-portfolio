@@ -3,10 +3,10 @@ import { review } from "./apiPaths";
 import apiConnector from "./axiosInstance";
 
 export function addReview(reviewData){
-    return (dispatch)=>{
+    return async(dispatch)=>{
         const toastId = toast.loading('Adding Review...');
         try{
-            const response = apiConnector('POST', review.addReview, reviewData);
+            const response = await apiConnector('POST', review.addReview, reviewData);
             toast.dismiss(toastId);
             toast.success('Review Added Successfully');
 

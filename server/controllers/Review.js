@@ -1,5 +1,6 @@
 const uuid = require('uuid4');
 const Review = require('../models/Review');
+const { uploadOnCloud, deleteFileOnCloud} = require('../utils/FileUploader')
 
 exports.writeReview = async(req, res) => {
     try{
@@ -9,13 +10,27 @@ exports.writeReview = async(req, res) => {
                 message: "Please fill all fields"
             })
         }
+        console.log("REQ FILES : ", req.files);
+        if(!req.files || !req.files["brandIcon"]){
+            return res.status(400).json({message: "Brand Icon is required"});
+        }
+
+        const file = req.files["brandIcon"][0];
+
+        let brandIconFile = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER)
+
+        let brandIcon = {
+            url: brandIconFile?.secure_url,
+            publicId: brandIconFile?.public_id
+        }
         const newReview = await Review.create({
             name,
             email,
             brandName,
             review,
             social,
-            reviewId: uuid()
+            reviewId: uuid(),
+            brandIcon: brandIcon
         });
 
         res.status(201).json({
@@ -111,6 +126,7 @@ exports.deleteReview = async(req, res) => {
                 message: "Review Not found!",
             })
         }
+        await deleteFileOnCloud(review?.brandIcon?.publicId);
         await Review.findOneAndDelete({reviewId: id});
         res.status(200).json({
             message: "Review deleted successfully"
@@ -128,11 +144,20 @@ exports.deleteReview = async(req, res) => {
 exports.editReview = async(req, res) => {
     try{
         const reviewId = req.params.id;
-        const {name, email, social, username, brandName, review} = req.body;
-
+        let {name, email, social, brandName, review, brandIcon, approved} = req.body;
         const reviewEntry = await Review.findOne({reviewId});
         if(!reviewEntry){
             return res.status(404).json({message: "Review not found"})
+        }
+
+        if(req.files && req.files["updatedBrandIcon"]){
+            let file = req.files["updatedBrandIcon"][0];
+            let uploadedFile = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER);
+            await deleteFileOnCloud(brandIcon?.public_id)
+            brandIcon = {
+                url: uploadedFile?.secure_url,
+                public_id: uploadedFile.public_id
+            }
         }
 
         const updateReview = await Review.findOneAndUpdate({reviewId}, {
@@ -140,7 +165,9 @@ exports.editReview = async(req, res) => {
             name: name, 
             brandName: brandName,
             review: review,
-            social: social
+            social: social,
+            brandIcon: brandIcon,
+            approved: approved
         }, {new: true}
         )
 

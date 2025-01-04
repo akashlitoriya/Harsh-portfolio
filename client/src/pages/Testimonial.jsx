@@ -16,7 +16,7 @@ const Testimonial = () => {
   console.log(reviews);
   return (
     <div className="h-screen font-bold text-5xl text-blue_primary snap-start flex justify-center items-center">
-      <div className="w-11/12 md:w-4/5 flex flex-col gap-6 items-center p-4 md:p-10 bg-white bg-opacity-5 backdrop-blur-md rounded-xl">
+      <div className="w-11/12 md:w-4/5 h-3/5 md:h-fit flex flex-col gap-6 items-center p-4 md:p-10 bg-white bg-opacity-5 backdrop-blur-md rounded-xl overflow-hidden">
         <motion.div
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
@@ -27,7 +27,7 @@ const Testimonial = () => {
           <p className="h-[2px] md:h-1 bg-blue_primary"></p>
         </motion.div>
 
-        <div className="w-full max-w-[1400px]">
+        <div className="w-full max-w-[1400px] h-full md:h-fit overflow-hidden">
           {
             reviews && reviews.length > 0 ? (
               <InfiniteHorizontalScroll items={reviews}/>
