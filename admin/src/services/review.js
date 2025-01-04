@@ -36,14 +36,14 @@ export const deleteReview = (reviewId, token) =>{
     }
 }
 
-export const editReview =(data, token) => {
+export const editReview =(data,id, token) => {
     return async(dispatch) => {
         try{
             dispatch(setLoading(true));
             const headers = {
                 "Authorization": `Bearer ${token}`
             }
-            const response = await apiConnector(`${reviews.editReview}/${data.reviewId}`, 'PUT', data, headers, null);
+            const response = await apiConnector(`${reviews.editReview}/${id}`, 'PUT', data, headers, null);
             dispatch(setLoading(false));
             toast.success("Review updated");
             return response;
