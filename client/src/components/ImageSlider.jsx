@@ -35,7 +35,7 @@ const ImageSlider = ({ project }) => {
     };
     return (
         <div className={`max-h-full h-full flex rounded-xl overflow-x-hidden relative group`}>
-            <div className='flex md:hidden transition-all duration-300 md:group-hover:flex absolute w-full h-full justify-between items-center'>
+            <div className='flex transition-all duration-300 md:group-hover:flex absolute w-full h-full justify-between items-center'>
                 <button className='text-white z-30 text-2xl p-2 md:p-4 bg-black bg-opacity-30 backdrop-blur-3xl' onClick={() => paginate(-1)}><IoIosArrowBack /></button>
                 <button className='rotate-180 z-30 text-white text-2xl p-2 md:p-4 bg-black bg-opacity-30 backdrop-blur-3xl' onClick={() => paginate(1)}><IoIosArrowBack /></button>
             </div>
