@@ -26,7 +26,10 @@ export default {
             transform: 'translateY(calc(-50% - 6px))'
           }
         }
-      }
+      },
+      boxShadow: {
+        'custom-inset': 'inset 0px 1px 10px 3px rgba(255, 252, 255, 0.24)',
+      },
     },
   },
   plugins: [],

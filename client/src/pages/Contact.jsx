@@ -28,7 +28,7 @@ const Contact = () => {
   return (
     <div className='w-full min-h-screen flex justify-center items-center snap-start'>
       {/* Container  */}
-      <div className='w-11/12 md:w-4/5 flex flex-col justify-center items-center backdrop-blur-md p-4 md:p-10 rounded-xl bg-white bg-opacity-5'>
+      <div className='w-11/12 md:w-4/5 flex flex-col justify-center items-center backdrop-blur-md p-4 md:p-10 rounded-xl bg-white bg-opacity-5 shadow-custom-inset'>
         {/* Input Boxes  */}
         <div className='w-full md:w-4/5 flex flex-col gap-6 md:gap-10 items-center'>
           <div className='w-full flex flex-col md:flex-row gap-6 md:gap-10'>
