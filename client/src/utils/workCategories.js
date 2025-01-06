@@ -2,25 +2,25 @@ const workCategories = [
     {
         id:1,
         name: "Product Animations",
-        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1735842794/my_portfolio/pmtvrqxkfhe3cjx4j5kg.png",
+        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1736157736/my_portfolio/w6zuagyhtz2tndceafhr.png",
         navigate: "/productAnimation"
     },
     {
         id:2,
         name: "Product Mockup",
-        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1735842835/my_portfolio/mot3ayl2rde7oix8evdb.png",
+        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1736157675/my_portfolio/nwg1btmvktjcd8xqjb2m.png",
         navigate: "/productMockup"
     },
     {
         id:3,
         name:"Personal Projects",
-        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1735842876/my_portfolio/p78eazirdyxeyvhf4bvp.png",
+        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1736157852/my_portfolio/kbr0eu6s12gicz9oxsns.png",
         navigate: "/personalProject"
     },
     {
         id:4,
         name: "Brand Visual",
-        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1735842918/my_portfolio/kwdkrnaeowgaeelv8gqf.png",
+        banner: "https://res.cloudinary.com/dmsxlec8p/image/upload/v1736157801/my_portfolio/reyw2nrgde2stgdroyys.png",
         navigate: "/brandVisual"
     }
 ]
