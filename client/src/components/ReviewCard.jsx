@@ -3,7 +3,7 @@ import { FaInstagram } from "react-icons/fa6";
 
 const ReviewCard = ({data}) => {
   return (
-    <div className='px-8 py-5 rounded-lg w-80 md:min-w-[500px] text-lg text-white font-normal bg-black bg-opacity-60 backdrop-blur-3xl shadow-xl'>
+    <div className='px-8 py-5 rounded-lg w-60 sm:w-80 md:min-w-[500px] text-lg text-white font-normal bg-black bg-opacity-60 backdrop-blur-3xl shadow-xl'>
       <div className='space-y-2 flex flex-col justify-between h-full'>
         <div className='space-y-2'>
             <h1 className='text-sm text-gray-400 font-semibold line-clamp-1'>{data.brandName}</h1>
