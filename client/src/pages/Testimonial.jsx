@@ -23,7 +23,7 @@ const Testimonial = () => {
           transition={{ delay: 0.3, duration: 0.3 }}
           className="w-max"
         >
-          <h1 className="text-white text-3xl lg:text-4xl w-fit">Reviews</h1>
+          <h1 className="text-white text-2xl lg:text-4xl w-fit">Reviews</h1>
           <p className="h-[2px] md:h-1 bg-blue_primary"></p>
         </motion.div>
 

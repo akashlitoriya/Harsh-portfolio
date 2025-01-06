@@ -1,8 +1,6 @@
 import React, { useRef } from 'react'
 import hero_section_image from '../assets/hero_section_image.png'
-import CTAButton from '../components/CTAButton'
 import {delay, motion} from 'framer-motion'
-import back from '../assets/back.jpg'
 const Home = () => {
   return (
     <div className=' w-full h-max min-h-screen text-white text-5xl font-bold flex justify-center items-center snap-start relative'>
