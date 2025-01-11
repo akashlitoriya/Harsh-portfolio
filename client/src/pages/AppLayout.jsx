@@ -5,7 +5,6 @@ import Testimonial from "./Testimonial";
 import AboutMe from "./AboutMe";
 import Contact from "./Contact";
 import NavigationBar from "../components/NavigationBar";
-import BackImage from '../assets/bg.png'
 import BgDesktopVideo from '../assets/bg-desktop.mp4'
 import BgPhoneVideo from '../assets/bg-phone.mp4'
 

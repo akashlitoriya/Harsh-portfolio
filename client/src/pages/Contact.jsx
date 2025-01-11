@@ -26,7 +26,7 @@ const Contact = () => {
   }
 
   return (
-    <div className='w-full min-h-screen flex justify-center items-center snap-start'>
+    <div className='w-full relative min-h-screen flex justify-center items-center snap-start'>
       {/* Container  */}
       <div className='w-11/12 md:w-4/5 flex flex-col justify-center items-center backdrop-blur-md p-4 md:p-10 rounded-xl bg-white bg-opacity-5 shadow-custom-inset'>
         {/* Input Boxes  */}
