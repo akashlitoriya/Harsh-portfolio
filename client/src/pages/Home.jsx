@@ -18,7 +18,7 @@ const Home = () => {
 
         </div>
         <motion.div className='z-50' initial={{'opacity':0, x:-100}} whileInView={{'opacity':100, x:0}} transition={{"delay":0.6, duration:0.3}}>
-          <img src={hero_section_image} className='mx-auto w-4/5 sm:h-64'/>
+          <img src={hero_section_image} className='mx-auto w-4/5 '/>
         </motion.div>
 
 
