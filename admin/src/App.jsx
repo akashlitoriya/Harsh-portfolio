@@ -12,6 +12,8 @@ import ListProjects from './pages/ListProjects'
 import {ToastContainer} from 'react-toastify'
 import ListReviews from './pages/ListReview'
 import 'react-toastify/dist/ReactToastify.css';
+import Worksection from './pages/Worksection'
+import ChangeBackground from './pages/ChangeBackground'
 
 function App() {
   const router = createBrowserRouter([
@@ -50,6 +52,22 @@ function App() {
       element:(
         <ProtectedRoute>
           <ListReviews />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path:"/worksection",
+      element:(
+        <ProtectedRoute>
+          <Worksection />
+        </ProtectedRoute>
+      )
+    },
+    {
+      path:"/bg",
+      element:(
+        <ProtectedRoute>
+          <ChangeBackground />
         </ProtectedRoute>
       )
     }

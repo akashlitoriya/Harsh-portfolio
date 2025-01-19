@@ -13,6 +13,10 @@ const BackgroundSchema = mongoose.Schema({
     cloudId: {
         type: String,
         required: true
+    },
+    isMobile: {
+        type: Boolean,
+        required: true
     }
 })
 
