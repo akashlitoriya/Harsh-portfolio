@@ -23,3 +23,8 @@ export const reviews ={
     deleteReview: `${backend_url}/review/deleteReview`,
     editReview: `${backend_url}/review/editReview`
 }
+
+export const background = {
+    getBackground: `${backend_url}/background`,
+    changeBackground: `${backend_url}/changebackground`
+}

@@ -16,7 +16,8 @@ const addBackground = async(req, res) => {
         const background = Background.create({
             url: uploadResponse.secure_url,
             cloudId: uploadResponse.public_id,
-            bgType: file.mimetype.includes('image')? "Image" : "Video"
+            bgType: file.mimetype.includes('image')? "Image" : "Video",
+            isMobile: false
         })
 
         fs.unlinkSync(file.path);
@@ -32,7 +33,7 @@ const getBackground = async(req, res) => {
         const background = await Background.find({}).exec();
         res.status(200).json({
             message: "Fetched the background",
-            bg: background[0]
+            bg: background
         })
 
     }catch(err){
@@ -46,14 +47,16 @@ const getBackground = async(req, res) => {
 const changeBackground = async(req, res) =>{
     try{
         const {file} = req;
-        
-        const background = await Background.find({}).exec();
+        const {isMobile} = req.body;
+        const background = await Background.findOne({isMobile}).exec();
         const uploadResponse = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER);
+        
         await deleteFileOnCloud(background.cloudId);
 
-        const updateEntry = await Background.findOneAndUpdate({_id: background._id},{
+        const updateEntry = await Background.findOneAndUpdate({_id: background._id, },{
             url: uploadResponse.secure_url,
-            cloundId: uploadResponse.public_id
+            cloundId: uploadResponse.public_id,
+            bgType: file.mimetype.split('/')[0].match('image') ? "Image" : "Video"
         }, {new: true});
 
         res.status(200).json({message: "Background updated successfully"})

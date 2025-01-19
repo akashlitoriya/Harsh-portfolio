@@ -14,3 +14,7 @@ export const review = {
 export const contact = {
     contactUs: `${backend}/api/v1/contact/contact`
 }
+
+export const background = {
+    backgrounds: `${backend}/api/v1/background`
+}
