@@ -54,7 +54,7 @@ const NavigationBar = ({section}) => {
             <div className={`w-2 m-auto h-full bg-text_secondary opacity-60 backdrop-blur-md rounded-full z-0 flex flex-col justify-evenly`}>
                 {
                     navItems.length > 0 && navItems.map((item) => (
-                        <div key={item.id} className={`w-2 h-2 ${item.id === section? "bg-blue_primary": "bg-white"}`}></div>
+                        <div key={item.id} className={`w-2 h-2 ${item.id === section? "bg-white": "bg-white"}`}></div>
                     ))
                 }
             </div>

@@ -4,7 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        Montserrat: ["Montserrat", "sans-serif"]
+        Montserrat: ["Montserrat", "sans-serif"],
+        Nord: ["Nord", "sans-serif"],
+        Poppins: ["Poppins", "sans-serif"]
       },
       colors: {
         backdrop: "#151515",

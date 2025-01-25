@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import CTAButton from '../components/CTAButton';
 import { IoLogoInstagram,IoLogoLinkedin, IoLogoYoutube } from "react-icons/io5";
+import { FaBehance } from "react-icons/fa6";
 import { FaArtstation } from "react-icons/fa";
 import contactUs  from '../services/contactUsService';
 import {useDispatch} from 'react-redux'
@@ -40,14 +41,14 @@ const Contact = () => {
 
           {/* Button  */}
           <div className='w-full md:w-3/5 flex justify-center items-center'>
-            <CTAButton text={"Connect"} primaryColor={"blue_primary"} textColor={"white"} handleSubmit={handleContact}/>
+            <CTAButton text={"Connect"} primaryColor={"black"} textColor={"white"} handleSubmit={handleContact}/>
           </div>
           {/* Socials  */}
           <div className='w-full flex flex-row justify-between md:justify-center items-center gap-8 text-3xl text-gray-300'>
             <a className='transition-all duration-200 hover:scale-125 hover:text-blue_primary' href='https://www.linkedin.com/in/harshmandloi/' target='_blank'><IoLogoLinkedin/></a>
-            <a className='transition-all duration-200 hover:scale-125 hover:text-blue_primary' href='https://www.instagram.com/hxartzwall/' target='_blank'><IoLogoInstagram/></a>
-            <a className='transition-all duration-200 hover:scale-125 hover:text-blue_primary' href='https://www.artstation.com/hxartz' target='_blank' ><FaArtstation /></a>
-            <a className='transition-all duration-200 hover:scale-125 hover:text-blue_primary' href='https://www.youtube.com/@hxartz3' target='_blank'><IoLogoYoutube /></a>
+            <a className='transition-all duration-200 hover:scale-125 hover:text-pink-700' href='https://www.instagram.com/hxartzwall/' target='_blank'><IoLogoInstagram/></a>
+            <a className='transition-all duration-200 hover:scale-125 hover:text-blue_primary' href='https://www.behance.net/harshmandloi' target='_blank' ><FaBehance /></a>
+            <a className='transition-all duration-200 hover:scale-125 hover:text-red-600' href='https://www.youtube.com/@hxartz3' target='_blank'><IoLogoYoutube /></a>
           </div>
           
         </div>
