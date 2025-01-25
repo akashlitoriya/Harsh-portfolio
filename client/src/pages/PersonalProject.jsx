@@ -27,10 +27,10 @@ const PersonalProject = () => {
     
     //console.log("PROJECT LIST : ", projectList);
   return (
-    <div className='min-h-screen w-screen overflow-x-hidden flex flex-col justify-center items-center bg-backdrop'>
+    <div className='min-h-screen w-screen overflow-x-hidden flex flex-col justify-center items-center gap-3 sm:gap-8 bg-backdrop'>
       <div className='w-max mt-6 md:mt-10'>
-          <h1 className='text-white text-xl sm:text-3xl lg:text-4xl w-fit tracking-wider font-Montserrat font-semibold uppercase'>Personal Project</h1>
-          <p className='h-[2px] md:h-1 bg-blue_primary'></p>
+          <h1 className='text-white text-xl sm:text-3xl lg:text-4xl w-fit tracking-wider font-Montserrat font-semibold uppercase  px-10 py-5 bg-white bg-opacity-5 rounded-lg'>Personal Project</h1>
+          
         </div>
       <div className='w-full md:w-[1200px] p-8 rounded-xl'>
         {
