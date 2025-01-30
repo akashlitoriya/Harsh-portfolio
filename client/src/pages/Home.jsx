@@ -3,7 +3,7 @@ import hero_section_image from '../assets/hero_section_image.png'
 import {delay, motion} from 'framer-motion'
 const Home = () => {
   return (
-    <div className='w-full h-max min-h-screen text-white text-5xl font-bold flex justify-center sm:justify-end items-center snap-start relative'>
+    <div className='w-screen md:w-full h-max min-h-screen text-white text-5xl font-bold flex justify-center sm:justify-end items-center snap-start relative'>
       {/* Container  */}
       <div className=' w-11/12 sm:w-fit mr-0 sm:mr-28 mb-0 sm:mb-28 absolute sm:static top-2/4  flex flex-col md:flex-row sm:items-center shadow-custom-inset bg-white bg-opacity-5 rounded-xl px-4 py-8 md:px-10 md:py-10 backdrop-blur-md  z-50'>
         <div className='flex flex-col gap-3 md:gap-6 justify-center'>
