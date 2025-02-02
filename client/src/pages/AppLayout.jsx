@@ -56,8 +56,11 @@ const AppLayout = () => {
 
   // Async function to simulate API call
   const fakeApiCall = () => {
+    console.log("SESSION STORAGE - ", sessionStorage.getItem("loaded"));
+    
     return new Promise((resolve) => {
       setTimeout(() => {
+        sessionStorage.setItem("loaded", true);
         resolve(); // Simulate API response after 4 seconds
       }, 4000);
     });
@@ -68,7 +71,10 @@ const AppLayout = () => {
     const loadData = async () => {
       dispatch(addLoader());
       await handlefetchBackground();
-      await fakeApiCall(); // Wait for the fake API call to complete
+      if(!sessionStorage.getItem("loaded")){
+        await fakeApiCall(); // Wait for the fake API call to complete
+      }
+      
       dispatch(removeLoader());
     };
 
