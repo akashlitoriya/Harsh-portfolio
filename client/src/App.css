@@ -4,26 +4,11 @@
 }
 body {
   overflow-x: hidden;
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none; 
 }
 
-
-
-::-webkit-scrollbar {
-  width: 10px;
+body::-webkit-scrollbar { 
+  display: none;  /* Safari and Chrome */
 }
 
-::-webkit-scrollbar-track {
-  background: #2f363a;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #0f33ff;
-  border-radius: 10px;
-}
-
-@supports not selector(: : -webkit-scrollbar) {
-  body {
-    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
-  }
-}

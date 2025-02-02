@@ -27,7 +27,7 @@ const listVariant = {
     },
 };
   return (
-    <div className='h-screen w-full font-bold font-Montserrat flex flex-col justify-center items-center snap-start relative'>
+    <div className='h-screen w-screen font-bold font-Montserrat flex flex-col justify-center items-center snap-start relative'>
       <div className='w-11/12 md:w-4/5 flex flex-col items-center gap-3 md:gap-12 p-4 md:p-10 bg-white bg-opacity-5 backdrop-blur-md rounded-xl shadow-custom-inset'>
         {/* Heading  */}
         <div className='w-max'>

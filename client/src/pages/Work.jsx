@@ -23,7 +23,7 @@ const Work = () => {
   }
 
   return (
-    <div className='w-full h-max min-h-screen text-5xl font-bold flex justify-center items-center snap-start relative'>
+    <div className='w-screen h-max min-h-screen text-5xl font-bold flex justify-center items-center snap-start relative'>
       {/* Container  */}
       <div className='w-11/12 md:w-4/5 md:min-h-[550px] flex flex-col justify-center gap-1 md:gap-7 items-center p-4 md:p-10 bg-white bg-opacity-5 backdrop-blur-md rounded-xl shadow-custom-inset'>
         {/* Heading  */}
