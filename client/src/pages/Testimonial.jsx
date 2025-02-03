@@ -15,7 +15,7 @@ const Testimonial = () => {
 
   console.log(reviews);
   return (
-    <div className="h-screen w-screen relative font-bold text-5xl text-blue_primary snap-start flex justify-center items-center">
+    <div className="h-screen w-screen sm:w-full relative font-bold text-5xl text-blue_primary snap-start flex justify-center items-center">
       <div className="w-11/12 md:w-4/5 h-3/5 md:h-fit flex flex-col gap-5 md:gap-10 items-center p-4 md:p-10 bg-white bg-opacity-5 backdrop-blur-md rounded-xl overflow-hidden shadow-custom-inset">
         <motion.div
           initial={{ scale: 0 }}
