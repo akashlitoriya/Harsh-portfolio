@@ -21,8 +21,16 @@ dotenv.config();
 
 const port = process.env.PORT || 4000;
 
+let allowedDomains = ["https://hxartz.com", "https://hxartz.vercel.app","https://admin-hxartz.vercel.app"]
+
 app.use(cors({
-    origin: "*"
+    origin: function (origin, callback) {
+        if (allowedDomains.indexOf(origin) === -1) {
+          var msg = `This site ${origin} does not have an access. Only specific domains are allowed to access it.`;
+          return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+      }
 }))
 
 
