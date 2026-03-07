@@ -10,7 +10,7 @@ const projectRoutes = require('./routes/Project');
 const userRoutes = require('./routes/User');
 const contactRoutes = require('./routes/Contact');
 const backgroundRoutes = require('./routes/Background')
-const { createReporter, telegram } = require('masterpager')
+const { createReporter, telegram } = require('@akashlitoriya/masterpager')
 
 const app = express();
 
