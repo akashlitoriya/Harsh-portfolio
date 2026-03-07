@@ -4,7 +4,7 @@ const adminMailTemplate = require('../utils/AdminMailTemplate');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const contactUs = async(req, res) =>{
+const contactUs = async(req, res, next) =>{
     try{
         const {name, message, email} = req.body;
         if(!name || !message || !email){
@@ -18,8 +18,7 @@ const contactUs = async(req, res) =>{
         return res.status(200).json({message: "Email sent successfully"});
     }
     catch(err){
-        console.log("ERROR OCCUR IN CONTACT US : ", err);
-        return res.status(500).json({message: "Internal Server Error"});
+        next(err);
     }
 }
 

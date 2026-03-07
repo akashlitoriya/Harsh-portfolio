@@ -5,7 +5,7 @@ const fs = require('fs')
 const dotenv = require('dotenv')
 dotenv.config();
 
-const addBackground = async(req, res) => {
+const addBackground = async(req, res, next) => {
     try{
         const {file} = req;
         if(!file.mimetype.includes('image') && !file.mimetype.includes('video')){
@@ -23,12 +23,11 @@ const addBackground = async(req, res) => {
         fs.unlinkSync(file.path);
         res.status(200).json({message:"Added Background"});
     }catch(err){
-        console.log("Error adding background : ", err)
-        res.status(500).json({message:"Internal Server Error"})
+        next(err);
     }
 }
 
-const getBackground = async(req, res) => {
+const getBackground = async(req, res, next) => {
     try{
         const background = await Background.find({}).exec();
         res.status(200).json({
@@ -37,14 +36,11 @@ const getBackground = async(req, res) => {
         })
 
     }catch(err){
-        console.log("ERROR FETCHING BACKGROUND : ", err);
-        res.status(500).json({
-            message: "Internal Server Error"
-        })
+        next(err);
     }
 }
 
-const changeBackground = async(req, res) =>{
+const changeBackground = async(req, res, next) =>{
     try{
         const {file} = req;
         const {isMobile} = req.body;
@@ -55,15 +51,14 @@ const changeBackground = async(req, res) =>{
 
         const updateEntry = await Background.findOneAndUpdate({_id: background._id, },{
             url: uploadResponse.secure_url,
-            cloundId: uploadResponse.public_id,
+            cloudId: uploadResponse.public_id,
             bgType: file.mimetype.split('/')[0].match('image') ? "Image" : "Video"
         }, {new: true});
 
         res.status(200).json({message: "Background updated successfully"})
 
     }catch(err){
-        console.log("Error occured while changing the background : ", err);
-        res.status(500).json({message: "Internal Server Error"})
+        next(err);
     }
 }
 

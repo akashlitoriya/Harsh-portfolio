@@ -6,7 +6,7 @@ const fs = require('fs');
 
 dotenv.config();
 
-exports.createProject = async(req, res) => {
+exports.createProject = async(req, res, next) => {
     try{
         const{title, description, category, isImportant} = req.body;
         //console.log("REQ FILES: ", req.files);
@@ -22,14 +22,12 @@ exports.createProject = async(req, res) => {
         if(!file || (!file.mimetype.split('/')[0].match('image') && !file.mimetype.split('/')[0].match('video'))){
             return res.status(400).json({message:"Invalid file type."});
         }
-        
         let cloudFile = await uploadOnCloud(file, process.env.CLOUDINARY_CLOUD_FOLDER);
         let galleryUpload = [];
         for(let i=0; req.files["gallery"] &&  i<req.files["gallery"].length; i++){
             const galleryFile = req.files["gallery"][i];
             galleryUpload.push(uploadOnCloud(galleryFile, process.env.CLOUDINARY_CLOUD_FOLDER));
         }
-
         galleryUpload = await Promise.allSettled(galleryUpload);
         let galleryUrls = galleryUpload.map((file)=>{
             return {
@@ -53,28 +51,21 @@ exports.createProject = async(req, res) => {
             publicId: cloudFile.public_id,
             gallery: galleryUrls
         })
-
         fs.unlinkSync(file.path);
         for(let i=0; req.files["gallery"] && i<req.files["gallery"].length; i++){
             fs.unlinkSync(req.files["gallery"][i].path);
         }
-
         res.status(201).json({
             success: true,
             message: "Project created successfully"
         })
     }
     catch(err){
-        console.log(err)
-        res.status(500).json({
-            success: false,
-            message: "Failed to create project",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.getImportantProductAnimation = async(req, res) => {
+exports.getImportantProductAnimation = async(req, res, next) => {
     try{
         const projects = await Project.find({important: true,
             category: "Product Animation"
@@ -86,17 +77,12 @@ exports.getImportantProductAnimation = async(req, res) => {
             data: projects
         })
     }catch(err){
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Failed to fetch important Product Animations",
-            error: err.message
-        })
+        next(err);
     }
 }
 
 
-exports.getImportantPersonalProject = async(req, res) => {
+exports.getImportantPersonalProject = async(req, res, next) => {
     try{
         const projects = await Project.find(
             {
@@ -112,16 +98,11 @@ exports.getImportantPersonalProject = async(req, res) => {
         })
     }
     catch(err){
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Failed to fetch important Personal Projects",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.getImportantProductMockup = async(req, res) => {
+exports.getImportantProductMockup = async(req, res, next) => {
     try{
         const projects = await Project.find(
             {
@@ -137,12 +118,7 @@ exports.getImportantProductMockup = async(req, res) => {
         })
     }
     catch(err){
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Failed to fetch important Product Mockup",
-            error: err.message
-        })
+        next(err);
     }
 }
 
@@ -162,16 +138,11 @@ exports.getImportantBrandVisual = async(req, res) => {
         })
     }
     catch(err){
-        console.error(err);
-        res.status(500).json({
-            success: false,
-            message: "Failed to fetch important Brand Visual",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.getProjects = async(req, res) =>{
+exports.getProjects = async(req, res, next) =>{
     try{
         const projects = await Project.find({}, {publicId:0, _id:0, __v:0}).sort({createdAt: -1});
 
@@ -181,16 +152,11 @@ exports.getProjects = async(req, res) =>{
             data: projects
         })
     }catch(err){
-        console.error("Error Fetching Projects : ",err);
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.deleteProject = async(req, res) =>{
+exports.deleteProject = async(req, res, next) =>{
     try{
         const {id} = req.params;
         const project = await Project.findOne({projectId: id});
@@ -212,12 +178,7 @@ exports.deleteProject = async(req, res) =>{
         })
 
     }catch(err){
-        console.error("Error Deleting Project : ",err);
-        res.status(500).json({
-            success: false,
-            message: "Internal Server Error",
-            error: err.message
-        })
+        next(err);
     }
 }
 

@@ -2,7 +2,7 @@ const uuid = require('uuid4');
 const Review = require('../models/Review');
 const { uploadOnCloud, deleteFileOnCloud} = require('../utils/FileUploader')
 
-exports.writeReview = async(req, res) => {
+exports.writeReview = async(req, res, next) => {
     try{
         const{name, brandName, review, social, email} = req.body;
         if(!name || !brandName || !review || !social || !email){
@@ -38,15 +38,11 @@ exports.writeReview = async(req, res) => {
             review: newReview,
         })
     }catch(err){
-        console.log("Failed to add review: ", err.message)
-        res.status(500).json({
-            message: "Failed to add review",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.getReviews = async(req, res) => {
+exports.getReviews = async(req, res, next) => {
     try{
         const reviews = await Review.find({approved: true});
 
@@ -55,14 +51,11 @@ exports.getReviews = async(req, res) => {
             reviews: reviews
         })
     }catch(err){
-        res.status(500).json({
-            message: "Failed to retrieve reviews",
-            error : err.message
-        })
+        next(err);
     }
 }
 
-exports.getPendingReviews = async(req,res) =>{
+exports.getPendingReviews = async(req,res, next) =>{
     try{
         const reviews = await Review.find({approved: false});
         res.status(200).json({
@@ -70,13 +63,11 @@ exports.getPendingReviews = async(req,res) =>{
             reviews: reviews
         })
     }catch(err){
-        res.status(500).json({message: "Failed to retrieve reviews",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.approveReview = async(req, res) =>{
+exports.approveReview = async(req, res, next) =>{
     try{
         const {id} = req.params;
         const review = await Review.findOne({reviewId: id});
@@ -93,15 +84,11 @@ exports.approveReview = async(req, res) =>{
         })
 
     }catch(err){
-        console.log("ERROR APPROVING REVIEW : ", err);
-        res.status(500).json({
-            message: "Failed to approve review",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.reviews = async(req, res) =>{
+exports.reviews = async(req, res, next) =>{
     try{
         const review = await Review.find({});
         res.status(200).json({
@@ -109,14 +96,11 @@ exports.reviews = async(req, res) =>{
             review: review
         })
     }catch(err){
-        console.log("ERROR FETCHING REVIEWS : ", err);
-        res.status(500).json({
-            message: "Internal Server Error"
-        })
+        next(err);
     }
 }
 
-exports.deleteReview = async(req, res) => {
+exports.deleteReview = async(req, res, next) => {
     try{
         console.log("DELETE REVIEW")
         const {id} = req.params;
@@ -133,15 +117,11 @@ exports.deleteReview = async(req, res) => {
         })
 
     }catch(err){
-        console.log("ERROR DELETING REVIEW : ", err);
-        res.status(500).json({
-            message: "Failed to delete review",
-            error: err.message
-        })
+        next(err);
     }
 }
 
-exports.editReview = async(req, res) => {
+exports.editReview = async(req, res, next) => {
     try{
         const reviewId = req.params.id;
         let {name, email, social, brandName, review, brandIcon, approved} = req.body;
@@ -174,7 +154,6 @@ exports.editReview = async(req, res) => {
         res.status(200).json({message: "Review updated successfully", updatedReview: updateReview})
 
     }catch(err){
-        console.log("Error occured while editing review : ", err);
-        res.status(500).json({message: "Internal Server Error"});
+        next(err);
     }
 }
