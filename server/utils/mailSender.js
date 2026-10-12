@@ -8,8 +8,13 @@ const transporter = nodeMailer.createTransport({
     auth: {
         user: `${process.env.MAIL_USER}`,
         pass: `${process.env.MAIL_PASS}`
-    }
+    },
+    port: process.env.SMTP_PORT,
+    logger: true,
+    debug: true
 })
+
+transporter.verify().then(()=> console.log('SMTP Ready')).catch((err)=> console.log('SMTP Failed : error - ', err));
 
 const sendMail = async(to, subject, text) =>{
     const mailOptions = {
