@@ -4,6 +4,7 @@ dotenv.config();
 
 const transporter = nodeMailer.createTransport({
     host: `${process.env.MAIL_HOST}`,
+    connectionTimeout: process.env.MAIL_CON_TIMEOUT,
     auth: {
         user: `${process.env.MAIL_USER}`,
         pass: `${process.env.MAIL_PASS}`
