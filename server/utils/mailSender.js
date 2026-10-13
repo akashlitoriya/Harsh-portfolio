@@ -1,35 +1,28 @@
-const nodeMailer = require('nodemailer');
+const {
+    SendApi,
+    Configuration
+} = require('@hostinger/mail-sdk');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const transporter = nodeMailer.createTransport({
-    host: `${process.env.MAIL_HOST}`,
-    connectionTimeout: process.env.MAIL_CON_TIMEOUT,
-    auth: {
-        user: `${process.env.MAIL_USER}`,
-        pass: `${process.env.MAIL_PASS}`
-    },
-    port: process.env.SMTP_PORT,
-    logger: true,
-    debug: true
-})
+const configuration = new Configuration({accessToken: process.env.HOSTINGER_TOKEN});
+const apiInstance = new SendApi(configuration);
 
-transporter.verify().then(()=> console.log('SMTP Ready')).catch((err)=> console.log('SMTP Failed : error - ', err));
 
 const sendMail = async(to, subject, text) =>{
-    const mailOptions = {
-        from : `${process.env.MAIL_USER}`,
-        to,
-        subject,
-        html: text
-    }
-
-    try{
-        await transporter.sendMail(mailOptions);
-        console.log('Email sent successfully');
-    }catch(err){
-        console.log("ERROR SENDING MAIL : ", err);
-        throw new Error("Error sending mail");
+    try {
+        const sendRequestPayload = {
+            to: [to],
+            displayName: 'hxartz',
+            subject: subject,
+            html: text
+        }
+        const { status, data } = await apiInstance.sendEmail(
+            process.env.HOSTINGER_MAIL_RESOURCE_ID,
+            sendRequestPayload
+        );
+    } catch (err) {
+        console.error("Error occured while sending mail")
     }
 }
 

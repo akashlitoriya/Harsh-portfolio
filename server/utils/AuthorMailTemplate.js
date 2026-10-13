@@ -1,7 +1,7 @@
-const dotenv = require('dotenv');
+const dotenv = require("dotenv");
 dotenv.config();
 const authorMailTemplate = (authorName) => {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
                 <html>
                     <head>
         <meta charset="UTF-8">
@@ -27,7 +27,7 @@ const authorMailTemplate = (authorName) => {
     </p>
 
 </body>
-</html>`
-}
+</html>`;
+};
 
 module.exports = authorMailTemplate;
